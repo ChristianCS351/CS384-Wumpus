@@ -1,6 +1,5 @@
 import sys 
 import random
-import argparse
 
 index_cavepath1 = 0
 index_cavepath2 = 1
@@ -17,11 +16,12 @@ index_player = 8
 class NormalMode:
 
     def __init__(self, caves_nums):
-        self.cave = []
+        cave_list = [0, 0, 0, 0, False, False, False , False]
+        self.cave = [cave_list] + (caves_nums + 1)
 
-        for caving in range(caves_nums):
+        for caving in range(caves_nums + 1):
             self.cave[caving] = [0, 0, 0, 0, False, False, False, False]
-        if caves_nums == '25':
+        if caves_nums == 25:
 
             # 1 2 3 4 5
             # 6 7 8 9 10
@@ -62,26 +62,24 @@ class NormalMode:
         wumpus_place = 0 #This makes sure that the Wumpus will actually be placed and not forgotten, I used while to make sure it will never skip this as that would remove the entire point of winning if no Wumpus.
         wumpus_in = 1
         while wumpus_in != wumpus_place:
-            put_random = random.randrange(caves_nums)
+            put_random = random.randrange(caves_nums + 1)
             self.cave[put_random][index_wumpus] = True
             wumpus_place = wumpus_place + 1
 
         #Adding my Bat :D
         bat_place = 0
         bat_in = 1
-        while pits_in != pits_place:
-            put_random = random.randrange(caves_nums)
+        while bat_in != bat_place:
+            put_random = random.randrange(caves_nums + 1)
             if self.cave[put_random][index_wumpus] == False:
                self.cave[put_random][index_bat] = True
                bat_place = bat_place + 1
-
-            
 
         #Adding my Pit :D
         pit_place = 0
         pit_in = 1
         while pit_in != pit_place:
-            put_random = random.randrange(caves_nums)
+            put_random = random.randrange(caves_nums + 1)
             if (self.cave[put_random][index_wumpus] == False and self.cave[put_random][index_bat] == False):
                self.cave[put_random][index_pit] = True
                pit_place = pit_place + 1
@@ -90,16 +88,16 @@ class NormalMode:
         arrow_place = 0
         arrow_in = 1
         while arrow_in != arrow_place:
-            put_random = random.randrange(caves_nums)
+            put_random = random.randrange(caves_nums + 1)
             if (self.cave[put_random][index_wumpus] == False and self.cave[put_random][index_bat] == False and self.cave[put_random][index_pit] == False):
                self.cave[put_random][index_arrow] = True
                arrow_place = arrow_place + 1
 
-    def Player_Start(self, caves_nums):
+    def player_start(self, caves_nums):
         player_place = 0
         player_in = 1
         while player_in != player_place:
-            put_random = random.randrange(caves_nums)
+            put_random = random.randrange(caves_nums + 1)
             if (self.cave[put_random][index_wumpus] == False and self.cave[put_random][index_bat] == False and self.cave[put_random][index_pit] == False and self.cave[put_random][index_arrow] == False):
                 player_start = put_random
                 player_place = player_place + 1
@@ -109,10 +107,12 @@ class NormalMode:
         print(f" Ok great, you have spawned inside of the {player_start} cave, so lets begin shall we.\n")
         wumpus_dead = False
         arrow_supply = 3
-        wumpus_loc = self.cave[caves_nums][index_wumpus] = True
-        pit_loc = self.cave[caves_nums][index_pit] = True
-        bat_loc = self.cave[caves_nums][index_bat] = True
-        arrow_loc = self.cave[caves_nums][index_arrow] = True
+        #For this wumpus, pit, etc. I used this code "wumpus_loc = self.cave[caves_nums][index_wumpus] = True" but it kep returning error
+        #So I used ChatGPT for minor code guidance and support and it suggested I use enumerate and use i to switch it wumpus_loc.
+        wumpus_loc = [i for i, cave in enumerate(self.cave) if cave[index_wumpus]][0]
+        bat_loc = [i for i, cave in enumerate(self.cave) if cave[index_bat]][0]
+        pit_loc = [i for i, cave in enumerate(self.cave) if cave[index_pit]][0]
+        arrow_loc = [i for i, cave in enumerate(self.cave) if cave[index_arrow]][0]
 
 
         while wumpus_dead == False:
@@ -244,8 +244,8 @@ def menu():  #This is my menu for the Wumpus game, I plan to make a few gamemode
         print("\nOk then, let's bring you into the classic version of the Hunt the Wumpus Game!\n")
         caves_nums = 25
         normal = NormalMode(caves_nums)
-        start_location = normal.Player_Start(caves_nums)
-        start_location = normal.Actions(caves_nums)
+        start_location = normal.player_start(caves_nums)
+        start_location = normal.Actions(caves_nums, player_start)
     elif game_choice == '2':
         print("\nOk then, let's bring you into the simple version of Hunt the Wumpus Game!\n")
     elif game_choice == '3':
