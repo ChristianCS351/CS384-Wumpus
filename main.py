@@ -204,6 +204,7 @@ class NormalMode:
            print("\nYou have escaped and saved the nearby village!!!")
            menu()
         else:
+           print("The Village now a forever hostage of the Wumpus!\n")
            menu()
     
 
