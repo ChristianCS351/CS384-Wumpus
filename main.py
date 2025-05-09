@@ -60,12 +60,46 @@ class NormalMode:
         else:
             sys.exit()
 
-
+        #Adding my Wumpus :D
         wumpus_place = 0 #This makes sure that the Wumpus will actually be placed and not forgotten, I used while to make sure it will never skip this as that would remove the entire point of winning if no Wumpus.
         wumpus_in = 1
         while wumpus_in != wumpus_place:
-            put_random_wump = random.randrange(caves_nums)
-            self.cave[put_random_wump][index_wumpus] = True
+            put_random = random.randrange(caves_nums)
+            self.cave[put_random][index_wumpus] = True
+            wumpus_place = wumpus_place + 1
+
+        #Adding my Bat :D
+        bat_place = 0
+        bat_in = 1
+        while pits_in != pits_place:
+            put_random = random.randrange(caves_nums)
+            if self.cave[put_random][index_wumpus] == False:
+               self.cave[put_random][index_bat] = True
+               bat_place = bat_place + 1
+
+            
+
+        #Adding my Pit :D
+        pit_place = 0
+        pit_in = 1
+        while pit_in != pit_place:
+            put_random = random.randrange(caves_nums)
+            if (self.cave[put_random][index_wumpus] == False: and self.cave[put_random][index_bat] == False):
+               self.cave[put_random][index_pit] = True
+               pit_place = pit_place + 1
+
+               
+
+
+
+
+
+
+
+        #Adding my bat :D
+
+
+
 
         
 
