@@ -142,7 +142,7 @@ class NormalMode:
             cave3 = self.cave[caves_nums][index_cavepath3]
             cave4 = self.cave[caves_nums][index_cavepath4]
     
-            print(f" You are standing in cave {player_start} which lead to caves {cave1}, {cave2}, {cave3}, {cave4}!\n")
+            print(f" You are standing in cave {player_start} which lead to caves {cave1}, {cave2}, {cave3}, and {cave4}!\n")
             
             if wumpus_loc == (cave1) or wumpus_loc == (cave2) or wumpus_loc == (cave3) or wumpus_loc == (cave4):
                 print("You smell a horrid stench, A Wumpus must be close!!!")
@@ -152,8 +152,20 @@ class NormalMode:
 
             if pit_loc == (cave1) or pit_loc == (cave2) or pit_loc == (cave3) or pit_loc == (cave4):
                 print("You hear a whistling wind, you are close to a Pit!!!")
-
-            player_moving = input("What is your move Player, press (M) to move or press (S) to shoot")
+            
+            while player_moving != 'S' or player_moving != 's' or player_moving != 'M' or player_moving != 'm':
+                  player_moving = input("\nWhat is your move Player, press (M) to move or press (S) to shoot")
+             
+             if player_moving == S or player_moving == s:
+                print("\nOkay Player, you have decided to shoot an arrow to a nearby cave.")
+                while shoot_choice != (cave1) or shoot_choice != (cave2) or shoot_choice != (cave3) or shoot_choice != (cave4):
+                    shoot_choice = input(f"Where would you like to shoot the arrow? In cave {cave1}, {cave2}, {cave3}, or {cave4} ")
+                if shoot_choice == wumpus_loc:
+                    print("\nBAMMMM! You got a headshot, you killed the Wumpus and saved your own self, CONGRATS!")
+                else:
+                    arrow_supply = arrow_supply - 1
+                    print(f"Oh drats, you missed the Wumpus, you now have {arrow_supply} arrows remaining.")
+                    
 
             
              
