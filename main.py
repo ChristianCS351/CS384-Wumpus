@@ -20,8 +20,46 @@ class NormalMode:
         self.cave = []
 
         for caving in range(caves_nums)
-            self.cave.append({
-                self.
+            self.cave[caving] = [0, 0, 0, 0, False, False, False, False]
+
+                self.cave[1] = {''}
+        if caves_nums == '25':
+
+            # 1 2 3 4 5
+            # 6 7 8 9 10
+            # 11 12 13 14 15
+            # 16 17 18 19 20
+            # 21 22 23 24 25
+
+            #Cave Numbering = up, down, right, left, 4 things:                     
+            self.cave[1] = [1, 6, 2, 1, False, False, False, False]
+            self.cave[2] = [2, 7, 3, 1, False, False, False, False]
+            self.cave[3] = [3, 8, 4, 2, False, False, False, False]
+            self.cave[4] = [4, 9, 5, 3, False, False, False, False]
+            self.cave[5] = [5, 10, 5, 4, False, False, False, False]
+            self.cave[6] = [1, 11, 7, 6, False, False, False, False]
+            self.cave[7] = [2, 12, 8, 6, False, False, False, False]
+            self.cave[8] = [3, 13, 9, 7, False, False, False, False]
+            self.cave[9] = [4, 14, 10, 8, False, False, False, False]
+            self.cave[10] = [5, 15, 10, 9, False, False, False, False]
+            self.cave[11] = [6, 16, 12, 11, False, False, False, False]
+            self.cave[12] = [7, 17, 13, 11, False, False, False, False]
+            self.cave[13] = [8, 18, 14, 12, False, False, False, False]
+            self.cave[14] = [9, 19, 15, 13, False, False, False, False]
+            self.cave[15] = [10, 20, 15, 14, False, False, False, False]
+            self.cave[16] = [11, 21, 17, 16, False, False, False, False]
+            self.cave[17] = [12, 22, 18, 16, False, False, False, False]
+            self.cave[18] = [13, 23, 19, 17, False, False, False, False]
+            self.cave[19] = [14, 24, 20, 18, False, False, False, False]
+            self.cave[20] = [15, 25, 20, 19, False, False, False, False]
+            self.cave[21] = [16, 21, 22, 21, False, False, False, False]
+            self.cave[22] = [17, 22, 23, 21, False, False, False, False]
+            self.cave[23] = [18, 23, 24, 22, False, False, False, False]
+            self.cave[24] = [19, 24, 25, 23, False, False, False, False]
+            self.cave[25] = [20, 25, 25, 24, False, False, False, False]
+        else:
+            sys.exit()
+
 
     
 
@@ -81,7 +119,8 @@ def menu():  #This is my menu for the Wumpus game, I plan to make a few gamemode
 
     if game_choice == '1':
         print("\nOk then, let's bring you into the classic version of the Hunt the Wumpus Game!\n")
-
+        caves_nums = 25
+        
     elif game_choice == '2':
         print("\nOk then, let's bring you into the simple version of Hunt the Wumpus Game!\n")
     elif game_choice == '3':
