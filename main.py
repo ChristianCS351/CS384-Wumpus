@@ -6,8 +6,8 @@ import random
 
 class NormalMode:
 
-    index_cavepath1_loc = 1
-    index_cavepath2_loc = 2
+    index_cavepath1 = 1
+    index_cavepath2 = 2
     index_cavepath3 = 3
     index_cavepath4 = 4
 
@@ -109,10 +109,16 @@ class NormalMode:
     def Actions(self, caves_nums, player_start):
         print(f" Ok great, you have spawned inside of the {player_start} cave, so lets begin shall we.\n")
         wumpus_dead = False
+        arrow_supply = 3
+        wumpus_loc
+        pit_loc
+        bat_loc
+        arrow_loc
+
 
         while wumpus_dead == False:
             if player_start == self.cave[caves_nums][index_wumpus]:
-                print("Oh no, the Wumpus has eaten you like a jelly donut. You are Dead")
+                print("Oh no, the Wumpus has eaten you like a jelly donut. You are Dead!")
                 dead_return = input("Press anything to return to menu.")
                 menu()
             
@@ -120,6 +126,20 @@ class NormalMode:
                 player_start = random.randrange(caves_nums)
                 print(f"EEKKK EEEKK EEKKK! The bats took you away and placed you in {player_start} how cruel.")
                 continue
+
+            if player_start == self.cave[caves_nums][index_pit]:
+                print("AHHHHHHHH!!!! *crash* You fell into a pit like a blind person. You are Dead!")
+                dead_return = input("Press anything to return to menu.")
+                menu()
+            
+            if player_start == self.cave[caves_nums][index_arrow]:
+                print("Good Find!! You found a nifty arrow in this room, you now have an extra arrow to use.")
+                continue
+
+            cave1 = self.cave[caves_nums][index_cavepath1]
+            cave2 = self.cave[caves_nums][index_cavepath2]
+            cave3 = self.cave[caves_nums][index_cavepath3]
+            cave4 = self.cave[caves_nums][index_cavepath4]
         
 
             print(f" You are standing in cave {player_start}!\n")
