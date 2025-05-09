@@ -140,7 +140,7 @@ class NormalMode:
             cave3 = self.cave[caves_nums][index_cavepath3]
             cave4 = self.cave[caves_nums][index_cavepath4]
     
-            print(f" You are standing in cave {player_start} which lead to caves {cave1}, {cave2}, {cave3}, and {cave4}!\n")
+            print(f" You are alive and are standing in cave {player_start} which lead to caves {cave1}, {cave2}, {cave3}, and {cave4}!\n")
             
             if wumpus_loc == (cave1) or wumpus_loc == (cave2) or wumpus_loc == (cave3) or wumpus_loc == (cave4):
                 print("You smell a horrid stench, A Wumpus must be close!!!")
@@ -159,7 +159,7 @@ class NormalMode:
 
                     print("\nOkay Player, you have decided to shoot an arrow to a nearby cave.")
                     while shoot_choice != (cave1) or shoot_choice != (cave2) or shoot_choice != (cave3) or shoot_choice != (cave4):
-                        shoot_choice = input(f"Where would you like to shoot the arrow? In cave {cave1}, {cave2}, {cave3}, or {cave4} ")
+                        shoot_choice = input(f"Where would you like to shoot the arrow? In cave {cave1}, {cave2}, {cave3}, or {cave4}. ")
                     if shoot_choice == wumpus_loc:
                         print("\nBAMMMM! You got a headshot, you killed the Wumpus and saved your own self, CONGRATS!")
                         return wumpus_dead == True
@@ -177,8 +177,19 @@ class NormalMode:
                             break
                 else:
                     print("\nSorry, you no longer have arrows to shoot.\n")
+
+
             elif player_moving == M or player_moving == m:
+                while move_now == (cave1) or move_now == (cave2) or move_now == (cave3) or move_now == (cave4):
+                    move_now = input(f"\nOk great let's get moving now, which cave would you like to move to? Cave {cave1}, {cave2}, {cave3}, or {cave4}." )
+                move_now = player_start
+                print(f"\nOk Great, you have now moved to cave {player_start}!")
+
                 
+
+
+
+
                        
 
 
