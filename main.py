@@ -125,13 +125,11 @@ class NormalMode:
 
             if player_start == wumpus_loc:
                 print("Oh no, the Wumpus has eaten you like a jelly donut, a Raspberry to be specific. You are Dead!\n")
-                dead_return = input("Press anything to return to menu.")
-                menu()
+                break
 
             if player_start == pit_loc:
                 print("AHHHHHHHH!!!! *crash* You fell into a pit like a blind person who is also deaf. You are Dead!\n")
-                dead_return = input("Press anything to return to menu.")
-                menu()
+                break
             
             if player_start == arrow_loc:
                 print("Good Find!! You found a nifty arrow in this room, you now have an extra arrow to use.\n")
@@ -156,16 +154,34 @@ class NormalMode:
             while player_moving != 'S' or player_moving != 's' or player_moving != 'M' or player_moving != 'm':
                   player_moving = input("\nWhat is your move Player, press (M) to move or press (S) to shoot")
              
-             if player_moving == S or player_moving == s:
-                print("\nOkay Player, you have decided to shoot an arrow to a nearby cave.")
-                while shoot_choice != (cave1) or shoot_choice != (cave2) or shoot_choice != (cave3) or shoot_choice != (cave4):
-                    shoot_choice = input(f"Where would you like to shoot the arrow? In cave {cave1}, {cave2}, {cave3}, or {cave4} ")
-                if shoot_choice == wumpus_loc:
-                    print("\nBAMMMM! You got a headshot, you killed the Wumpus and saved your own self, CONGRATS!")
+            if player_moving == S or player_moving == s:
+                if arrow_supply > 0:
+
+                    print("\nOkay Player, you have decided to shoot an arrow to a nearby cave.")
+                    while shoot_choice != (cave1) or shoot_choice != (cave2) or shoot_choice != (cave3) or shoot_choice != (cave4):
+                        shoot_choice = input(f"Where would you like to shoot the arrow? In cave {cave1}, {cave2}, {cave3}, or {cave4} ")
+                    if shoot_choice == wumpus_loc:
+                        print("\nBAMMMM! You got a headshot, you killed the Wumpus and saved your own self, CONGRATS!")
+                        return wumpus_dead == True
+                    else:
+                        arrow_supply = arrow_supply - 1
+                        print(f"Oh drats, you missed the Wumpus, you now have {arrow_supply} arrows remaining.\n")
+                        wumpus_killmove = random.choice(['run','run','kill','run','run'])
+
+                        if wumpus_killmove == 'run':
+                            print("The Wumpus has retreated!\n")
+                            wumpus_loc = random.randrange(caves_nums)
+
+                        elif wumpus_killmove == 'kill':
+                            print("Oh no, the Wumpus has eaten you like a jelly donut, a Raspberry to be specific. You are Dead!\n")
+                            break
                 else:
-                    arrow_supply = arrow_supply - 1
-                    print(f"Oh drats, you missed the Wumpus, you now have {arrow_supply} arrows remaining.")
-                    
+                    print("\nSorry, you no longer have arrows to shoot.\n")
+            elif player_moving == M or player_moving == m:
+                
+                       
+
+
 
             
              
