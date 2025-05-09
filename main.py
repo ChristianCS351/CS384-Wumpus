@@ -16,11 +16,10 @@ index_player = 8
 class NormalMode:
 
     def __init__(self, caves_nums):
-        cave_list = [0, 0, 0, 0, False, False, False , False]
-        self.cave = [cave_list] * (caves_nums + 1)
+        self.cave[]
 
         for caving in range(caves_nums + 1):
-            self.cave[caving] = [0, 0, 0, 0, False, False, False, False]
+            self.cave.append([0, 0, 0, 0, False, False, False, False])
         if caves_nums == 25:
 
             # 1 2 3 4 5
@@ -93,7 +92,7 @@ class NormalMode:
                self.cave[put_random][index_arrow] = True
                arrow_place = arrow_place + 1
 
-    def player_start(self, caves_nums):
+    def player_starts(self, caves_nums):
         player_place = 0
         player_in = 1
         while player_in != player_place:
@@ -134,36 +133,36 @@ class NormalMode:
                 print("Good Find!! You found a nifty arrow in this room, you now have an extra arrow to use.\n")
                 continue
 
-            cave1 = self.cave[caves_nums][index_cavepath1]
-            cave2 = self.cave[caves_nums][index_cavepath2]
-            cave3 = self.cave[caves_nums][index_cavepath3]
-            cave4 = self.cave[caves_nums][index_cavepath4]
+            cave1 = self.cave[player_start][index_cavepath1]
+            cave2 = self.cave[player_start][index_cavepath2]
+            cave3 = self.cave[player_start][index_cavepath3]
+            cave4 = self.cave[player_start][index_cavepath4]
     
             print(f"You are alive and are standing in cave {player_start} which lead to caves {cave1}, {cave2}, {cave3}, and {cave4}!\n")
             
-            if wumpus_loc == (cave1) or wumpus_loc == (cave2) or wumpus_loc == (cave3) or wumpus_loc == (cave4):
+            if wumpus_loc in [(cave1),(cave2),(cave3),(cave4)]:
                 print("You smell a horrid stench, A Wumpus must be close!!!")
 
-            if bat_loc == (cave1) or bat_loc == (cave2) or bat_loc == (cave3) or bat_loc == (cave4):
+            if bat_loc in [(cave1),(cave2),(cave3),(cave4)]:
                 print("You hear flapping. Bats are closeby!!!")
 
-            if pit_loc == (cave1) or pit_loc == (cave2) or pit_loc == (cave3) or pit_loc == (cave4):
+            if pit_loc in [(cave1),(cave2),(cave3),(cave4)]:
                 print("You hear a whistling wind, you are close to a Pit!!!")
             
             player_moving = ''
-            while player_moving != 'S' or player_moving != 's' or player_moving != 'M' or player_moving != 'm':
-                  player_moving = input("\nWhat is your move Player, press (M) to move or press (S) to shoot:")
+            while player_moving not in ['S','s','M','m']:
+                  player_moving = input("\nWhat is your move Player, press (M) to move or press (S) to shoot: ")
              
-            if player_moving == 'S' or player_moving == 's':
+            if player_moving in ['S','s']:
                 if arrow_supply > 0:
 
                     print("\nOkay Player, you have decided to shoot an arrow to a nearby cave.")
                     shoot_choice = ''
-                    while shoot_choice != (cave1) or shoot_choice != (cave2) or shoot_choice != (cave3) or shoot_choice != (cave4):
+                    while shoot_choice not in [(cave1),(cave2),(cave3),(cave4)]:
                         shoot_choice = input(f"Where would you like to shoot the arrow? In cave {cave1}, {cave2}, {cave3}, or {cave4}. ")
                     if shoot_choice == wumpus_loc:
                         print("\nBAMMMM! You got a headshot, you killed the Wumpus and saved your own self, CONGRATS!")
-                        return True
+                        wumpus_dead = True
                     else:
                         arrow_supply = arrow_supply - 1
                         print(f"Oh drats, you missed the Wumpus, you now have {arrow_supply} arrows remaining.\n")
@@ -175,14 +174,14 @@ class NormalMode:
 
                         elif wumpus_killmove == 'kill':
                             print("Oh no, the Wumpus has eaten you like a jelly donut, a Raspberry to be specific. You are Dead!\n")
-                            break
+                            return 0
                 else:
                     print("\nSorry, you no longer have arrows to shoot.\n")
 
 
-            elif player_moving == 'M' or player_moving == 'm':
+            elif player_moving in ['M','m']:
                 move_now = ''
-                while move_now == (cave1) or move_now == (cave2) or move_now == (cave3) or move_now == (cave4):
+                while move_now in [(cave1),(cave2),(cave3),(cave4)]:
                     move_now = input(f"\nOk great let's get moving now, which cave would you like to move to? Cave {cave1}, {cave2}, {cave3}, or {cave4}." )
                 player_start = move_now
                 print(f"\nOk Great, you have now moved to cave {player_start}!")
@@ -248,7 +247,7 @@ def menu():  #This is my menu for the Wumpus game, I plan to make a few gamemode
         print("--------------------------------------------------------------------------------\n")
         caves_nums = 25
         normal = NormalMode(caves_nums)
-        start_location = normal.player_start(caves_nums)
+        start_location = normal.player_starts(caves_nums)
         start_location = normal.Actions(caves_nums, start_location)
     elif game_choice == '2':
         print("\nOk then, let's bring you into the simple version of Hunt the Wumpus Game!\n")
