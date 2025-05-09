@@ -2,15 +2,59 @@ import sys
 import random
 
 
-class NormalMode
 
 
+class NormalMode:
 
-class SimpleMode
+    cavepath1 = 1
+    cavepath2 = 2
+    cavepath3 = 3
+    cavepath4 = 4
+
+    wumpus = 5
+    bat = 6
+    pit = 7
+    arrow = 8
+
+    def __init__(self, caves_nums):
+        self.cave = []
+
+        for caving in range(caves_nums)
+            self.cave.append({
+                self.
+
     
 
 
-class HardMode
+
+
+class SimpleMode:
+
+    cavepath1 = 1
+    cavepath2 = 2
+    cavepath3 = 3
+    cavepath4 = 4
+
+    wumpus = 5
+    arrow1 = 6
+    arrow2 = 7
+
+    
+
+
+class HardMode:
+
+    cavepath1 = 1
+    cavepath2 = 2
+    cavepath3 = 3
+    cavepath4 = 4
+
+    wumpus = 5
+    bat1 = 6
+    bat2 = 7
+    pit1 = 8
+    pit2 = 9
+
 
 
 
@@ -37,6 +81,7 @@ def menu():  #This is my menu for the Wumpus game, I plan to make a few gamemode
 
     if game_choice == '1':
         print("\nOk then, let's bring you into the classic version of the Hunt the Wumpus Game!\n")
+
     elif game_choice == '2':
         print("\nOk then, let's bring you into the simple version of Hunt the Wumpus Game!\n")
     elif game_choice == '3':
