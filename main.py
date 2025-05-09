@@ -6,15 +6,15 @@ import random
 
 class NormalMode:
 
-    cavepath1 = 1
-    cavepath2 = 2
-    cavepath3 = 3
-    cavepath4 = 4
+    index_cavepath1_loc = 1
+    index_cavepath2_loc = 2
+    index_cavepath3 = 3
+    index_cavepath4 = 4
 
-    wumpus = 5
-    bat = 6
-    pit = 7
-    arrow = 8
+    index_wumpus = 5
+    index_bat = 6
+    index_pit = 7
+    index_arrow = 8
 
     def __init__(self, caves_nums):
         self.cave = []
@@ -59,6 +59,15 @@ class NormalMode:
             self.cave[25] = [20, 25, 25, 24, False, False, False, False]
         else:
             sys.exit()
+
+
+        wumpus_place = 0 #This makes sure that the Wumpus will actually be placed and not forgotten, I used while to make sure it will never skip this as that would remove the entire point of winning if no Wumpus.
+        wumpus_in = 1
+        while wumpus_in != wumpus_place:
+            put_random_wump = random.randrange(caves_nums)
+            self.cave[put_random_wump][index_wumpus] = True
+
+        
 
 
     
