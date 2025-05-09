@@ -1,4 +1,28 @@
 import sys 
+import random
+
+
+class NormalMode
+
+
+
+class SimpleMode
+    
+
+
+class HardMode
+
+
+
+
+
+
+
+
+
+
+
+
 
 def menu():  #This is my menu for the Wumpus game, I plan to make a few gamemodes here to make it unique and a rules sheet.
     print("Welcome to Hunt the Wumpus!")
@@ -24,8 +48,8 @@ def menu():  #This is my menu for the Wumpus game, I plan to make a few gamemode
         print("\nOk then, Goodbye :D")
         sys.exit()
     else:
-        print("Invalid Choice, please type 1,2,3,4,5 in the game menu.\n")
         menu()
+        print("Invalid Choice, please type 1,2,3,4,5 in the game menu.\n")
     
 
 def rules_sheet():
@@ -63,7 +87,7 @@ def rules_sheet():
         continue_nor1 = input("Type anything to continue: ")
         print("\nWumpus: If you miss a shot the Wumpus will have an 80% to move and a 20% to kill you instantly from anywhere you are.")
         print("\nBats: Bats will not be able to kill you in this mode, just move you randomly, which could kill you if you are put on the wrong tile.\n")
-        end_nor = input("Type anything to continue: ")
+        end_nor = input("Please type anything to return to rules sheet: ")
         rules_sheet()
 
     elif menu_choice == '3':
@@ -74,7 +98,7 @@ def rules_sheet():
         print("Bats and Pits: No bats or pits will spawn in this particular mode.\n")
         continue_sim1 = input("Type anything to continue: ")
         print("\nWumpus: If you miss a shot the Wumpus will have a 100% to move and none to kill you, unless it happens to land on you in random move.")
-        end_sim = input("Type anything to continue: ")
+        end_sim = input("Please type anything to return to rules sheet: ")
         rules_sheet()
     elif menu_choice == '4':
         print("\nHere are the Hard Game Mode Rules!")
@@ -85,14 +109,15 @@ def rules_sheet():
         continue_har1 = input("Type anything to continue: ")
         print("\nWumpus: If you miss a shot the Wumpus will have an 50% to move and a 50% to kill you instantly from anywhere you are.")
         print("\nBats: Bats will be able to kill you if you encounter one at 20%, and of course 80% to just move you randomly, which could kill you if you are put on the wrong tile.\n")
-        end_har = input("Type anything to continue: ")
+        end_har = input("Please type anything to return to rules sheet: ")
         rules_sheet()
+
     elif menu_choice == '5':
         print("\nReturning to menu!\n")
         menu()
     else:
+        rules_sheet()
         print("Invalid Choice, please type 1,2,3,4,5 in the rules menu.\n")
-        menu()
    
 
 print(menu())
