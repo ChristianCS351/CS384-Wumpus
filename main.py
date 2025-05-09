@@ -8,18 +8,22 @@ index_cavepath4 = 3
 
 index_wumpus = 4
 index_bat = 5
+index_bat2 = 6
+index_bat3 = 7
 index_pit = 6
-index_arrow = 7
-index_player = 8
+index_pit2 = 8
+index_arrow = 9
+index_arrow2 = 10
 
 
 class NormalMode:
+
 
     def __init__(self, caves_nums):
         self.cave = []
 
         for caving in range(caves_nums + 1):
-            self.cave.append([0, 0, 0, 0, False, False, False, False])
+            self.cave.append([0, 0, 0, 0, False, False, False, False, False, False, False, False])
         if caves_nums == 25:
 
             # 1 2 3 4 5
@@ -29,31 +33,31 @@ class NormalMode:
             # 21 22 23 24 25
 
             #Cave Numbering = up, down, right, left, 4 things:                     
-            self.cave[1] = [1, 6, 2, 1, False, False, False, False]
-            self.cave[2] = [2, 7, 3, 1, False, False, False, False]
-            self.cave[3] = [3, 8, 4, 2, False, False, False, False]
-            self.cave[4] = [4, 9, 5, 3, False, False, False, False]
-            self.cave[5] = [5, 10, 5, 4, False, False, False, False]
-            self.cave[6] = [1, 11, 7, 6, False, False, False, False]
-            self.cave[7] = [2, 12, 8, 6, False, False, False, False]
-            self.cave[8] = [3, 13, 9, 7, False, False, False, False]
-            self.cave[9] = [4, 14, 10, 8, False, False, False, False]
-            self.cave[10] = [5, 15, 10, 9, False, False, False, False]
-            self.cave[11] = [6, 16, 12, 11, False, False, False, False]
-            self.cave[12] = [7, 17, 13, 11, False, False, False, False]
-            self.cave[13] = [8, 18, 14, 12, False, False, False, False]
-            self.cave[14] = [9, 19, 15, 13, False, False, False, False]
-            self.cave[15] = [10, 20, 15, 14, False, False, False, False]
-            self.cave[16] = [11, 21, 17, 16, False, False, False, False]
-            self.cave[17] = [12, 22, 18, 16, False, False, False, False]
-            self.cave[18] = [13, 23, 19, 17, False, False, False, False]
-            self.cave[19] = [14, 24, 20, 18, False, False, False, False]
-            self.cave[20] = [15, 25, 20, 19, False, False, False, False]
-            self.cave[21] = [16, 21, 22, 21, False, False, False, False]
-            self.cave[22] = [17, 22, 23, 21, False, False, False, False]
-            self.cave[23] = [18, 23, 24, 22, False, False, False, False]
-            self.cave[24] = [19, 24, 25, 23, False, False, False, False]
-            self.cave[25] = [20, 25, 25, 24, False, False, False, False]
+            self.cave[1] = [1, 6, 2, 1, False, False, False, False ,False, False, False, False]
+            self.cave[2] = [2, 7, 3, 1, False, False, False, False ,False, False, False, False]
+            self.cave[3] = [3, 8, 4, 2, False, False, False, False ,False, False, False, False]
+            self.cave[4] = [4, 9, 5, 3, False, False, False, False ,False, False, False, False]
+            self.cave[5] = [5, 10, 5, 4, False, False, False, False ,False, False, False, False]
+            self.cave[6] = [1, 11, 7, 6, False, False, False, False ,False, False, False, False]
+            self.cave[7] = [2, 12, 8, 6, False, False, False, False ,False, False, False, False]
+            self.cave[8] = [3, 13, 9, 7, False, False, False, False ,False, False, False, False]
+            self.cave[9] = [4, 14, 10, 8, False, False, False, False ,False, False, False, False]
+            self.cave[10] = [5, 15, 10, 9, False, False, False, False ,False, False, False, False]
+            self.cave[11] = [6, 16, 12, 11, False, False, False, False ,False, False, False, False]
+            self.cave[12] = [7, 17, 13, 11, False, False, False, False ,False, False, False, False]
+            self.cave[13] = [8, 18, 14, 12, False, False, False, False ,False, False, False, False]
+            self.cave[14] = [9, 19, 15, 13, False, False, False, False ,False, False, False, False]
+            self.cave[15] = [10, 20, 15, 14, False, False, False, False ,False, False, False, False]
+            self.cave[16] = [11, 21, 17, 16, False, False, False, False ,False, False, False, False]
+            self.cave[17] = [12, 22, 18, 16, False, False, False, False ,False, False, False, False]
+            self.cave[18] = [13, 23, 19, 17, False, False, False, False ,False, False, False, False]
+            self.cave[19] = [14, 24, 20, 18, False, False, False, False ,False, False, False, False]
+            self.cave[20] = [15, 25, 20, 19, False, False, False, False ,False, False, False, False]
+            self.cave[21] = [16, 21, 22, 21, False, False, False, False ,False, False, False, False]
+            self.cave[22] = [17, 22, 23, 21, False, False, False, False ,False, False, False, False]
+            self.cave[23] = [18, 23, 24, 22, False, False, False, False ,False, False, False, False]
+            self.cave[24] = [19, 24, 25, 23, False, False, False, False ,False, False, False, False]
+            self.cave[25] = [20, 25, 25, 24, False, False, False, False ,False, False, False, False]
         else:
             sys.exit()
 
@@ -206,45 +210,188 @@ class NormalMode:
         else:
            print("The Village now a forever hostage of the Wumpus!\n")
            menu()
+
+
+class SimpleMode:
+
+    def __init__(self, caves_nums):
+        self.cave = []
+
+        for caving in range(caves_nums + 1):
+            self.cave.append([0, 0, 0, 0, False, False])
+        if caves_nums == 20:
+
+            # 1 2 3 4 5
+            # 6 7 8 9 10
+            # 11 12 13 14 15
+            # 16 17 18 19 20
+
+            #Cave Numbering = up, down, right, left, 4 things:  
+            self.cave[1] = [1, 6, 2, 1, False, False, False, False ,False, False, False, False]
+            self.cave[2] = [2, 7, 3, 1, False, False, False, False ,False, False, False, False]
+            self.cave[3] = [3, 8, 4, 2, False, False, False, False ,False, False, False, False]
+            self.cave[4] = [4, 9, 5, 3, False, False, False, False ,False, False, False, False]
+            self.cave[5] = [5, 10, 5, 4, False, False, False, False ,False, False, False, False]
+            self.cave[6] = [1, 11, 7, 6, False, False, False, False ,False, False, False, False]
+            self.cave[7] = [2, 12, 8, 6, False, False, False, False ,False, False, False, False]
+            self.cave[8] = [3, 13, 9, 7, False, False, False, False ,False, False, False, False]
+            self.cave[9] = [4, 14, 10, 8, False, False, False, False ,False, False, False, False]
+            self.cave[10] = [5, 15, 10, 9, False, False, False, False ,False, False, False, False]
+            self.cave[11] = [6, 16, 12, 11, False, False, False, False ,False, False, False, False]
+            self.cave[12] = [7, 17, 13, 11, False, False, False, False ,False, False, False, False]
+            self.cave[13] = [8, 18, 14, 12, False, False, False, False ,False, False, False, False]
+            self.cave[14] = [9, 19, 15, 13, False, False, False, False ,False, False, False, False]
+            self.cave[15] = [10, 20, 15, 14, False, False, False, False ,False, False, False, False]
+            self.cave[16] = [11, 21, 17, 16, False, False, False, False ,False, False, False, False]
+            self.cave[17] = [12, 22, 18, 16, False, False, False, False ,False, False, False, False]
+            self.cave[18] = [13, 23, 19, 17, False, False, False, False ,False, False, False, False]
+            self.cave[19] = [14, 24, 20, 18, False, False, False, False ,False, False, False, False]
+            self.cave[20] = [15, 25, 20, 19, False, False, False, False ,False, False, False, False]                  
+
+        else:
+            sys.exit()
+
+        #Adding my Wumpus :D
+        wumpus_place = 0 #This makes sure that the Wumpus will actually be placed and not forgotten, I used while to make sure it will never skip this as that would remove the entire point of winning if no Wumpus.
+        wumpus_in = 1
+        while True:
+            put_random = random.randrange(1, caves_nums + 1)
+            self.cave[put_random][index_wumpus] = True
+            break
+
+
+        #Adding Arrow :D
+        arrow_place = 0
+        arrow_in = 1
+        while True:
+            put_random = random.randrange(2, caves_nums + 1)
+            if (self.cave[put_random][index_wumpus] == False and self.cave[put_random][index_bat] == False and self.cave[put_random][index_pit] == False):
+               self.cave[put_random][index_arrow] = True
+               break
+
+        #Adding Arrow 2 :D
+        arrow_place2 = 0
+        arrow_in2 = 1
+        while True:
+            put_random = random.randrange(1, caves_nums + 1)
+            if (self.cave[put_random][index_wumpus] == False and self.cave[put_random][index_arrow] == False):
+               self.cave[put_random][index_arrow2] = True
+               break
+
+    def player_starts(self, caves_nums):
+        player_place = 0
+        player_in = 1
+        while player_in != player_place:
+            put_random = random.randrange(1, caves_nums + 1)
+            if (self.cave[put_random][index_wumpus] == False and self.cave[put_random][index_bat] == False and self.cave[put_random][index_pit] == False and self.cave[put_random][index_arrow] == False):
+                player_start = put_random
+                player_place = player_place + 1
+                return player_start
     
-
-
-
-
+    def Actions(self, caves_nums, player_start):
+        print(f"Ok great, you have spawned inside of the {player_start} cave, so lets begin shall we.\n")
+        wumpus_dead = False
+        arrow_supply = 3
+        #For this wumpus, pit, etc. I used this code "wumpus_loc = self.cave[caves_nums][index_wumpus] = True" but it kep returning error
+        #So I used ChatGPT for minor code guidance and support and it suggested I use enumerate and use i to switch it wumpus_loc.
+        wumpus_loc = [i for i, cave in enumerate(self.cave) if cave[index_wumpus]][0]
+        arrow_loc = [i for i, cave in enumerate(self.cave) if cave[index_arrow]][0]
+        arrow_loc2 = [i for i, cave in enumerate(self.cave) if cave[index_arrow]][0]
         
 
 
+        while wumpus_dead == False:
+
+           
+
+            if player_start == wumpus_loc:
+                print("Oh no, the Wumpus has eaten you like a jelly donut, a Raspberry to be specific. You are Dead!\n")
+                break
+
+            
+            if player_start == arrow_loc:
+                print("Good Find!! You found a nifty arrow in this room, you now have an extra arrow to use.\n")
+                arrow_supply = arrow_supply + 1
+                arrow_loc = 100
+                continue
+
+            if player_start == arrow_loc2:
+                print("Good Find!! You found a nifty arrow in this room, you now have an extra arrow to use.\n")
+                arrow_supply = arrow_supply + 1
+                arrow_loc2 = 100
+                continue
+
+            cave1 = self.cave[player_start][index_cavepath1]
+            cave2 = self.cave[player_start][index_cavepath2]
+            cave3 = self.cave[player_start][index_cavepath3]
+            cave4 = self.cave[player_start][index_cavepath4]
     
+            print(f"You are alive and are standing in cave {player_start} which lead to caves {cave1}, {cave2}, {cave3}, and {cave4}!\n")
+            
+            if wumpus_loc in [(cave1),(cave2),(cave3),(cave4)]:
+                print("You smell a horrid stench, A Wumpus must be close!!!")
+            
+            player_moving = ''
+            while player_moving not in ['S','s','M','m']:
+                  player_moving = input("\nWhat is your move Player, press (M) to move or press (S) to shoot: ")
+             
+            if player_moving in ['S','s']:
+                if arrow_supply > 0:
+
+                    print("\nOkay Player, you have decided to shoot an arrow to a nearby cave.")
+                    shoot_choice = ''
+                    while True:
+                        try:
+
+                            shoot_choice = int(input(f"Where would you like to shoot the arrow? In cave {cave1}, {cave2}, {cave3}, or {cave4}. "))
+                            if shoot_choice in [cave1, cave2, cave3, cave4]:
+                                break
+                        except ValueError:
+                            pass
+                    if shoot_choice == wumpus_loc:
+                        print("\nBAMMMM! You got a headshot, you killed the Wumpus and saved your own self, CONGRATS!")
+                        wumpus_dead = True
+                    else:
+                        arrow_supply = arrow_supply - 1
+                        print(f"Oh drats, you missed the Wumpus, you now have {arrow_supply} arrows remaining.\n")
+                        wumpus_killmove = random.choice(['run','run','stay','stay'])
+
+                        if wumpus_killmove == 'run':
+                            print("The Wumpus has retreated!\n")
+                            wumpus_loc = random.randrange(caves_nums)
+
+                        elif wumpus_killmove == 'stay':
+                            print("Great, the Wumpus has stayed in place, maybe you can shoot this time before it escapes!\n")
+                            return 0
+                else:
+                    print("\nSorry, you no longer have arrows to shoot.\n")
 
 
+            elif player_moving in ['M','m']:
+                move_now = ''
+                while True:
+                    try:
 
+                        move_now = int(input(f"\nOk great let's get moving now, which cave would you like to move to? Cave {cave1}, {cave2}, {cave3}, or {cave4}: "))
+                        if move_now in [cave1, cave2, cave3, cave4]:
+                            break
+                    except ValueError:
+                        pass
+                player_start = move_now
+                print(f"\nOk Great, you have now moved to cave {player_start}!")
 
-#class SimpleMode:
-
-    #cavepath1 = 1
-    #cavepath2 = 2
-    #cavepath3 = 3
-    #cavepath4 = 4
-
-    #wumpus = 5
-    #arrow1 = 6
-    #arrow2 = 7
+        if wumpus_dead == True:
+           print("\nYou have escaped and saved the nearby village!!!")
+           menu()
+        else:
+           print("The Village now a forever hostage of the Wumpus!\n")
+           menu()
 
     
 
 
 #class HardMode:
 
-    #cavepath1 = 1
-    #cavepath2 = 2
-    #cavepath3 = 3
-    #cavepath4 = 4
-
-    #wumpus = 5
-    #bat1 = 6
-    #bat2 = 7
-    #pit1 = 8
-    #pit2 = 9
 
 
 def menu():  #This is my menu for the Wumpus game, I plan to make a few gamemodes here to make it unique and a rules sheet.
@@ -268,6 +415,10 @@ def menu():  #This is my menu for the Wumpus game, I plan to make a few gamemode
         start_location = normal.Actions(caves_nums, start_location)
     elif game_choice == '2':
         print("\nOk then, let's bring you into the simple version of Hunt the Wumpus Game!\n")
+        caves_nums = 25
+        normal = SimpleMode(caves_nums)
+        start_location = normal.player_starts(caves_nums)
+        start_location = normal.Actions(caves_nums, start_location)
     elif game_choice == '3':
         print("\nOk then, you will be sorry :D. Let's bring you into the hard version of the Hunt the Wumpus Game!\n")
     elif game_choice == '4':
