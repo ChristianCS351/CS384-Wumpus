@@ -17,7 +17,7 @@ class NormalMode:
 
     def __init__(self, caves_nums):
         cave_list = [0, 0, 0, 0, False, False, False , False]
-        self.cave = [cave_list] + (caves_nums + 1)
+        self.cave = [cave_list] * (caves_nums + 1)
 
         for caving in range(caves_nums + 1):
             self.cave[caving] = [0, 0, 0, 0, False, False, False, False]
@@ -104,7 +104,7 @@ class NormalMode:
                 return player_start
     
     def Actions(self, caves_nums, player_start):
-        print(f" Ok great, you have spawned inside of the {player_start} cave, so lets begin shall we.\n")
+        print(f"Ok great, you have spawned inside of the {player_start} cave, so lets begin shall we.\n")
         wumpus_dead = False
         arrow_supply = 3
         #For this wumpus, pit, etc. I used this code "wumpus_loc = self.cave[caves_nums][index_wumpus] = True" but it kep returning error
@@ -139,7 +139,7 @@ class NormalMode:
             cave3 = self.cave[caves_nums][index_cavepath3]
             cave4 = self.cave[caves_nums][index_cavepath4]
     
-            print(f" You are alive and are standing in cave {player_start} which lead to caves {cave1}, {cave2}, {cave3}, and {cave4}!\n")
+            print(f"You are alive and are standing in cave {player_start} which lead to caves {cave1}, {cave2}, {cave3}, and {cave4}!\n")
             
             if wumpus_loc == (cave1) or wumpus_loc == (cave2) or wumpus_loc == (cave3) or wumpus_loc == (cave4):
                 print("You smell a horrid stench, A Wumpus must be close!!!")
@@ -150,18 +150,20 @@ class NormalMode:
             if pit_loc == (cave1) or pit_loc == (cave2) or pit_loc == (cave3) or pit_loc == (cave4):
                 print("You hear a whistling wind, you are close to a Pit!!!")
             
+            player_moving = ''
             while player_moving != 'S' or player_moving != 's' or player_moving != 'M' or player_moving != 'm':
-                  player_moving = input("\nWhat is your move Player, press (M) to move or press (S) to shoot")
+                  player_moving = input("\nWhat is your move Player, press (M) to move or press (S) to shoot:")
              
             if player_moving == 'S' or player_moving == 's':
                 if arrow_supply > 0:
 
                     print("\nOkay Player, you have decided to shoot an arrow to a nearby cave.")
+                    shoot_choice = ''
                     while shoot_choice != (cave1) or shoot_choice != (cave2) or shoot_choice != (cave3) or shoot_choice != (cave4):
                         shoot_choice = input(f"Where would you like to shoot the arrow? In cave {cave1}, {cave2}, {cave3}, or {cave4}. ")
                     if shoot_choice == wumpus_loc:
                         print("\nBAMMMM! You got a headshot, you killed the Wumpus and saved your own self, CONGRATS!")
-                        return wumpus_dead == True
+                        return True
                     else:
                         arrow_supply = arrow_supply - 1
                         print(f"Oh drats, you missed the Wumpus, you now have {arrow_supply} arrows remaining.\n")
@@ -179,6 +181,7 @@ class NormalMode:
 
 
             elif player_moving == 'M' or player_moving == 'm':
+                move_now = ''
                 while move_now == (cave1) or move_now == (cave2) or move_now == (cave3) or move_now == (cave4):
                     move_now = input(f"\nOk great let's get moving now, which cave would you like to move to? Cave {cave1}, {cave2}, {cave3}, or {cave4}." )
                 player_start = move_now
@@ -242,10 +245,11 @@ def menu():  #This is my menu for the Wumpus game, I plan to make a few gamemode
 
     if game_choice == '1':
         print("\nOk then, let's bring you into the classic version of the Hunt the Wumpus Game!\n")
+        print("--------------------------------------------------------------------------------\n")
         caves_nums = 25
         normal = NormalMode(caves_nums)
         start_location = normal.player_start(caves_nums)
-        start_location = normal.Actions(caves_nums, player_start)
+        start_location = normal.Actions(caves_nums, start_location)
     elif game_choice == '2':
         print("\nOk then, let's bring you into the simple version of Hunt the Wumpus Game!\n")
     elif game_choice == '3':
