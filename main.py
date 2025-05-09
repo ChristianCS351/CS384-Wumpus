@@ -16,7 +16,7 @@ index_player = 8
 class NormalMode:
 
     def __init__(self, caves_nums):
-        self.cave[]
+        self.cave = []
 
         for caving in range(caves_nums + 1):
             self.cave.append([0, 0, 0, 0, False, False, False, False])
@@ -60,43 +60,43 @@ class NormalMode:
         #Adding my Wumpus :D
         wumpus_place = 0 #This makes sure that the Wumpus will actually be placed and not forgotten, I used while to make sure it will never skip this as that would remove the entire point of winning if no Wumpus.
         wumpus_in = 1
-        while wumpus_in != wumpus_place:
-            put_random = random.randrange(caves_nums + 1)
+        while True:
+            put_random = random.randrange1, (caves_nums + 1)
             self.cave[put_random][index_wumpus] = True
-            wumpus_place = wumpus_place + 1
+            break
 
         #Adding my Bat :D
         bat_place = 0
         bat_in = 1
-        while bat_in != bat_place:
-            put_random = random.randrange(caves_nums + 1)
+        while True:
+            put_random = random.randrange(1, caves_nums + 1)
             if self.cave[put_random][index_wumpus] == False:
                self.cave[put_random][index_bat] = True
-               bat_place = bat_place + 1
+               break
 
         #Adding my Pit :D
         pit_place = 0
         pit_in = 1
-        while pit_in != pit_place:
-            put_random = random.randrange(caves_nums + 1)
+        while True:
+            put_random = random.randrange(1, caves_nums + 1)
             if (self.cave[put_random][index_wumpus] == False and self.cave[put_random][index_bat] == False):
                self.cave[put_random][index_pit] = True
-               pit_place = pit_place + 1
+               break
 
         #Adding Arrow :D
         arrow_place = 0
         arrow_in = 1
-        while arrow_in != arrow_place:
-            put_random = random.randrange(caves_nums + 1)
+        while True:
+            put_random = random.randrange(1, caves_nums + 1)
             if (self.cave[put_random][index_wumpus] == False and self.cave[put_random][index_bat] == False and self.cave[put_random][index_pit] == False):
                self.cave[put_random][index_arrow] = True
-               arrow_place = arrow_place + 1
+               break
 
     def player_starts(self, caves_nums):
         player_place = 0
         player_in = 1
         while player_in != player_place:
-            put_random = random.randrange(caves_nums + 1)
+            put_random = random.randrange(1, caves_nums + 1)
             if (self.cave[put_random][index_wumpus] == False and self.cave[put_random][index_bat] == False and self.cave[put_random][index_pit] == False and self.cave[put_random][index_arrow] == False):
                 player_start = put_random
                 player_place = player_place + 1
@@ -131,6 +131,7 @@ class NormalMode:
             
             if player_start == arrow_loc:
                 print("Good Find!! You found a nifty arrow in this room, you now have an extra arrow to use.\n")
+                arrow_supply = arrow_supply + 1
                 continue
 
             cave1 = self.cave[player_start][index_cavepath1]
