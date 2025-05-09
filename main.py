@@ -1,26 +1,25 @@
 import sys 
 import random
+import argparse
 
+index_cavepath1 = 0
+index_cavepath2 = 1
+index_cavepath3 = 2
+index_cavepath4 = 3
 
+index_wumpus = 4
+index_bat = 5
+index_pit = 6
+index_arrow = 7
+index_player = 8
 
 
 class NormalMode:
 
-    index_cavepath1 = 1
-    index_cavepath2 = 2
-    index_cavepath3 = 3
-    index_cavepath4 = 4
-
-    index_wumpus = 5
-    index_bat = 6
-    index_pit = 7
-    index_arrow = 8
-    index_player = 9
-
     def __init__(self, caves_nums):
         self.cave = []
 
-        for caving in range(caves_nums)
+        for caving in range(caves_nums):
             self.cave[caving] = [0, 0, 0, 0, False, False, False, False]
         if caves_nums == '25':
 
@@ -154,7 +153,7 @@ class NormalMode:
             while player_moving != 'S' or player_moving != 's' or player_moving != 'M' or player_moving != 'm':
                   player_moving = input("\nWhat is your move Player, press (M) to move or press (S) to shoot")
              
-            if player_moving == S or player_moving == s:
+            if player_moving == 'S' or player_moving == 's':
                 if arrow_supply > 0:
 
                     print("\nOkay Player, you have decided to shoot an arrow to a nearby cave.")
@@ -179,39 +178,16 @@ class NormalMode:
                     print("\nSorry, you no longer have arrows to shoot.\n")
 
 
-            elif player_moving == M or player_moving == m:
+            elif player_moving == 'M' or player_moving == 'm':
                 while move_now == (cave1) or move_now == (cave2) or move_now == (cave3) or move_now == (cave4):
                     move_now = input(f"\nOk great let's get moving now, which cave would you like to move to? Cave {cave1}, {cave2}, {cave3}, or {cave4}." )
-                move_now = player_start
+                player_start = move_now
                 print(f"\nOk Great, you have now moved to cave {player_start}!")
 
-                
 
-
-
-
-                       
-
-
-
-            
-             
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        #Adding my bat :D
+        print("\nYou have escaped and saved the nearby village!!!")
+        return 0
+    
 
 
 
@@ -224,44 +200,32 @@ class NormalMode:
 
 
 
-class SimpleMode:
+#class SimpleMode:
 
-    cavepath1 = 1
-    cavepath2 = 2
-    cavepath3 = 3
-    cavepath4 = 4
+    #cavepath1 = 1
+    #cavepath2 = 2
+    #cavepath3 = 3
+    #cavepath4 = 4
 
-    wumpus = 5
-    arrow1 = 6
-    arrow2 = 7
+    #wumpus = 5
+    #arrow1 = 6
+    #arrow2 = 7
 
     
 
 
-class HardMode:
+#class HardMode:
 
-    cavepath1 = 1
-    cavepath2 = 2
-    cavepath3 = 3
-    cavepath4 = 4
+    #cavepath1 = 1
+    #cavepath2 = 2
+    #cavepath3 = 3
+    #cavepath4 = 4
 
-    wumpus = 5
-    bat1 = 6
-    bat2 = 7
-    pit1 = 8
-    pit2 = 9
-
-
-
-
-
-
-
-
-
-
-
-
+    #wumpus = 5
+    #bat1 = 6
+    #bat2 = 7
+    #pit1 = 8
+    #pit2 = 9
 
 
 def menu():  #This is my menu for the Wumpus game, I plan to make a few gamemodes here to make it unique and a rules sheet.
@@ -279,7 +243,9 @@ def menu():  #This is my menu for the Wumpus game, I plan to make a few gamemode
     if game_choice == '1':
         print("\nOk then, let's bring you into the classic version of the Hunt the Wumpus Game!\n")
         caves_nums = 25
-        
+        normal = NormalMode(caves_nums)
+        start_location = normal.Player_Start(caves_nums)
+        start_location = normal.Actions(caves_nums)
     elif game_choice == '2':
         print("\nOk then, let's bring you into the simple version of Hunt the Wumpus Game!\n")
     elif game_choice == '3':
