@@ -10,10 +10,10 @@ index_wumpus = 4
 index_bat = 5
 index_bat2 = 6
 index_bat3 = 7
-index_pit = 6
-index_pit2 = 8
-index_arrow = 9
-index_arrow2 = 10
+index_pit = 8
+index_pit2 = 9
+index_arrow = 10
+index_arrow2 = 11
 
 
 class NormalMode:
@@ -136,7 +136,7 @@ class NormalMode:
             if player_start == arrow_loc:
                 print("Good Find!! You found a nifty arrow in this room, you now have an extra arrow to use.\n")
                 arrow_supply = arrow_supply + 1
-                arrow_loc = 100
+                self.cave[arrow_loc][index_arrow] = False
                 continue
 
             cave1 = self.cave[player_start][index_cavepath1]
@@ -218,7 +218,7 @@ class SimpleMode:
         self.cave = []
 
         for caving in range(caves_nums + 1):
-            self.cave.append([0, 0, 0, 0, False, False])
+            self.cave.append([0, 0, 0, 0, False, False, False, False, False, False, False, False])
         if caves_nums == 20:
 
             # 1 2 3 4 5
@@ -242,11 +242,11 @@ class SimpleMode:
             self.cave[13] = [8, 18, 14, 12, False, False, False, False ,False, False, False, False]
             self.cave[14] = [9, 19, 15, 13, False, False, False, False ,False, False, False, False]
             self.cave[15] = [10, 20, 15, 14, False, False, False, False ,False, False, False, False]
-            self.cave[16] = [11, 21, 17, 16, False, False, False, False ,False, False, False, False]
-            self.cave[17] = [12, 22, 18, 16, False, False, False, False ,False, False, False, False]
-            self.cave[18] = [13, 23, 19, 17, False, False, False, False ,False, False, False, False]
-            self.cave[19] = [14, 24, 20, 18, False, False, False, False ,False, False, False, False]
-            self.cave[20] = [15, 25, 20, 19, False, False, False, False ,False, False, False, False]                  
+            self.cave[16] = [11, 16, 17, 16, False, False, False, False ,False, False, False, False]
+            self.cave[17] = [12, 17, 18, 16, False, False, False, False ,False, False, False, False]
+            self.cave[18] = [13, 18, 19, 17, False, False, False, False ,False, False, False, False]
+            self.cave[19] = [14, 19, 20, 18, False, False, False, False ,False, False, False, False]
+            self.cave[20] = [15, 20, 20, 19, False, False, False, False ,False, False, False, False]                  
 
         else:
             sys.exit()
@@ -283,7 +283,7 @@ class SimpleMode:
         player_in = 1
         while player_in != player_place:
             put_random = random.randrange(1, caves_nums + 1)
-            if (self.cave[put_random][index_wumpus] == False and self.cave[put_random][index_bat] == False and self.cave[put_random][index_pit] == False and self.cave[put_random][index_arrow] == False):
+            if (self.cave[put_random][index_wumpus] == False):
                 player_start = put_random
                 player_place = player_place + 1
                 return player_start
@@ -296,7 +296,7 @@ class SimpleMode:
         #So I used ChatGPT for minor code guidance and support and it suggested I use enumerate and use i to switch it wumpus_loc.
         wumpus_loc = [i for i, cave in enumerate(self.cave) if cave[index_wumpus]][0]
         arrow_loc = [i for i, cave in enumerate(self.cave) if cave[index_arrow]][0]
-        arrow_loc2 = [i for i, cave in enumerate(self.cave) if cave[index_arrow]][0]
+        arrow_loc2 = [i for i, cave in enumerate(self.cave) if cave[index_arrow2]][0]
         
 
 
@@ -312,13 +312,13 @@ class SimpleMode:
             if player_start == arrow_loc:
                 print("Good Find!! You found a nifty arrow in this room, you now have an extra arrow to use.\n")
                 arrow_supply = arrow_supply + 1
-                arrow_loc = 100
+                self.cave[arrow_loc][index_arrow] = False
                 continue
 
             if player_start == arrow_loc2:
                 print("Good Find!! You found a nifty arrow in this room, you now have an extra arrow to use.\n")
+                self.cave[arrow_loc2][index_arrow2] = False
                 arrow_supply = arrow_supply + 1
-                arrow_loc2 = 100
                 continue
 
             cave1 = self.cave[player_start][index_cavepath1]
@@ -390,7 +390,7 @@ class SimpleMode:
     
 
 
-#class HardMode:
+class HardMode:
 
 
 
@@ -399,7 +399,7 @@ def menu():  #This is my menu for the Wumpus game, I plan to make a few gamemode
     print("---------------------------\n")
     print("Menu Choices:")
     print("-------1. Play Normal Mode: ---------")
-    print("-------2. Play Baby Mode: -----------")
+    print("-------2. Play Simple Mode: -----------")
     print("-------3. Play Hard Mode: -----------")
     print("-------4. Read Rules: ---------------")
     print("-------5. Exit Game: ----------------\n")
@@ -415,10 +415,10 @@ def menu():  #This is my menu for the Wumpus game, I plan to make a few gamemode
         start_location = normal.Actions(caves_nums, start_location)
     elif game_choice == '2':
         print("\nOk then, let's bring you into the simple version of Hunt the Wumpus Game!\n")
-        caves_nums = 25
-        normal = SimpleMode(caves_nums)
-        start_location = normal.player_starts(caves_nums)
-        start_location = normal.Actions(caves_nums, start_location)
+        caves_nums = 20
+        simple = SimpleMode(caves_nums)
+        start_location = simple.player_starts(caves_nums)
+        start_location = simple.Actions(caves_nums, start_location)
     elif game_choice == '3':
         print("\nOk then, you will be sorry :D. Let's bring you into the hard version of the Hunt the Wumpus Game!\n")
     elif game_choice == '4':
