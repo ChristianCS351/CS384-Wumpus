@@ -110,39 +110,52 @@ class NormalMode:
         print(f" Ok great, you have spawned inside of the {player_start} cave, so lets begin shall we.\n")
         wumpus_dead = False
         arrow_supply = 3
-        wumpus_loc
-        pit_loc
-        bat_loc
-        arrow_loc
+        wumpus_loc = self.cave[caves_nums][index_wumpus] = True
+        pit_loc = self.cave[caves_nums][index_pit] = True
+        bat_loc = self.cave[caves_nums][index_bat] = True
+        arrow_loc = self.cave[caves_nums][index_arrow] = True
 
 
         while wumpus_dead == False:
-            if player_start == self.cave[caves_nums][index_wumpus]:
-                print("Oh no, the Wumpus has eaten you like a jelly donut. You are Dead!")
-                dead_return = input("Press anything to return to menu.")
-                menu()
-            
-            if player_start == self.cave[caves_nums][index_bat]:
+
+            if player_start == bat_loc:
                 player_start = random.randrange(caves_nums)
-                print(f"EEKKK EEEKK EEKKK! The bats took you away and placed you in {player_start} how cruel.")
+                print(f"EEKKK EEEKK EEKKK! The bats took you away and placed you in {player_start} how cruel.\n")
                 continue
 
-            if player_start == self.cave[caves_nums][index_pit]:
-                print("AHHHHHHHH!!!! *crash* You fell into a pit like a blind person. You are Dead!")
+            if player_start == wumpus_loc:
+                print("Oh no, the Wumpus has eaten you like a jelly donut, a Raspberry to be specific. You are Dead!\n")
+                dead_return = input("Press anything to return to menu.")
+                menu()
+
+            if player_start == pit_loc:
+                print("AHHHHHHHH!!!! *crash* You fell into a pit like a blind person who is also deaf. You are Dead!\n")
                 dead_return = input("Press anything to return to menu.")
                 menu()
             
-            if player_start == self.cave[caves_nums][index_arrow]:
-                print("Good Find!! You found a nifty arrow in this room, you now have an extra arrow to use.")
+            if player_start == arrow_loc:
+                print("Good Find!! You found a nifty arrow in this room, you now have an extra arrow to use.\n")
                 continue
 
             cave1 = self.cave[caves_nums][index_cavepath1]
             cave2 = self.cave[caves_nums][index_cavepath2]
             cave3 = self.cave[caves_nums][index_cavepath3]
             cave4 = self.cave[caves_nums][index_cavepath4]
-        
+    
+            print(f" You are standing in cave {player_start} which lead to caves {cave1}, {cave2}, {cave3}, {cave4}!\n")
+            
+            if wumpus_loc == (cave1) or wumpus_loc == (cave2) or wumpus_loc == (cave3) or wumpus_loc == (cave4):
+                print("You smell a horrid stench, A Wumpus must be close!!!")
 
-            print(f" You are standing in cave {player_start}!\n")
+            if bat_loc == (cave1) or bat_loc == (cave2) or bat_loc == (cave3) or bat_loc == (cave4):
+                print("You hear flapping. Bats are closeby!!!")
+
+            if pit_loc == (cave1) or pit_loc == (cave2) or pit_loc == (cave3) or pit_loc == (cave4):
+                print("You hear a whistling wind, you are close to a Pit!!!")
+
+            player_moving = input("What is your move Player, press (M) to move or press (S) to shoot")
+
+            
              
 
 
@@ -222,6 +235,7 @@ def menu():  #This is my menu for the Wumpus game, I plan to make a few gamemode
     print("-------4. Read Rules: ---------------")
     print("-------5. Exit Game: ----------------\n")
     game_choice = input("Please select an option between (1 to 5): ")
+    print(game_choice)
 
     if game_choice == '1':
         print("\nOk then, let's bring you into the classic version of the Hunt the Wumpus Game!\n")
@@ -252,6 +266,7 @@ def rules_sheet():
     print("-------4. Hard Rules: ---------------")
     print("-------5. Return to Menu: ----------------\n\n")
     menu_choice = input("Please select an option between (1 to 5): ")
+    print(menu_choice)
 
     if menu_choice == '1':
         print("\nHere are the General Rules!")
