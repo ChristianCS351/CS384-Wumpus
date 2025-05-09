@@ -61,7 +61,7 @@ class NormalMode:
         wumpus_place = 0 #This makes sure that the Wumpus will actually be placed and not forgotten, I used while to make sure it will never skip this as that would remove the entire point of winning if no Wumpus.
         wumpus_in = 1
         while True:
-            put_random = random.randrange1, (caves_nums + 1)
+            put_random = random.randrange(1, caves_nums + 1)
             self.cave[put_random][index_wumpus] = True
             break
 
@@ -118,7 +118,7 @@ class NormalMode:
 
             if player_start == bat_loc:
                 player_start = random.randrange(caves_nums)
-                print(f"EEKKK EEEKK EEKKK! The bats took you away and placed you in {player_start} how cruel.\n")
+                print(f"EEKKK EEEKK EEKKK! The bats took you away and placed you in cave {player_start} how cruel!\n")
                 continue
 
             if player_start == wumpus_loc:
@@ -132,6 +132,7 @@ class NormalMode:
             if player_start == arrow_loc:
                 print("Good Find!! You found a nifty arrow in this room, you now have an extra arrow to use.\n")
                 arrow_supply = arrow_supply + 1
+                arrow_loc = 100
                 continue
 
             cave1 = self.cave[player_start][index_cavepath1]
@@ -159,8 +160,14 @@ class NormalMode:
 
                     print("\nOkay Player, you have decided to shoot an arrow to a nearby cave.")
                     shoot_choice = ''
-                    while shoot_choice not in [(cave1),(cave2),(cave3),(cave4)]:
-                        shoot_choice = input(f"Where would you like to shoot the arrow? In cave {cave1}, {cave2}, {cave3}, or {cave4}. ")
+                    while True:
+                        try:
+
+                            shoot_choice = int(input(f"Where would you like to shoot the arrow? In cave {cave1}, {cave2}, {cave3}, or {cave4}. "))
+                            if shoot_choice in [cave1, cave2, cave3, cave4]:
+                                break
+                        except ValueError:
+                            pass
                     if shoot_choice == wumpus_loc:
                         print("\nBAMMMM! You got a headshot, you killed the Wumpus and saved your own self, CONGRATS!")
                         wumpus_dead = True
@@ -182,14 +189,22 @@ class NormalMode:
 
             elif player_moving in ['M','m']:
                 move_now = ''
-                while move_now in [(cave1),(cave2),(cave3),(cave4)]:
-                    move_now = input(f"\nOk great let's get moving now, which cave would you like to move to? Cave {cave1}, {cave2}, {cave3}, or {cave4}." )
+                while True:
+                    try:
+
+                        move_now = int(input(f"\nOk great let's get moving now, which cave would you like to move to? Cave {cave1}, {cave2}, {cave3}, or {cave4}: "))
+                        if move_now in [cave1, cave2, cave3, cave4]:
+                            break
+                    except ValueError:
+                        pass
                 player_start = move_now
                 print(f"\nOk Great, you have now moved to cave {player_start}!")
 
-
-        print("\nYou have escaped and saved the nearby village!!!")
-        return 0
+        if wumpus_dead == True:
+           print("\nYou have escaped and saved the nearby village!!!")
+           menu()
+        else:
+           menu()
     
 
 
@@ -245,7 +260,7 @@ def menu():  #This is my menu for the Wumpus game, I plan to make a few gamemode
 
     if game_choice == '1':
         print("\nOk then, let's bring you into the classic version of the Hunt the Wumpus Game!\n")
-        print("--------------------------------------------------------------------------------\n")
+        print("------------------------------------------------------------------------------\n")
         caves_nums = 25
         normal = NormalMode(caves_nums)
         start_location = normal.player_starts(caves_nums)
