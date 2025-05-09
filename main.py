@@ -15,14 +15,13 @@ class NormalMode:
     index_bat = 6
     index_pit = 7
     index_arrow = 8
+    index_player = 9
 
     def __init__(self, caves_nums):
         self.cave = []
 
         for caving in range(caves_nums)
             self.cave[caving] = [0, 0, 0, 0, False, False, False, False]
-
-                self.cave[1] = {''}
         if caves_nums == '25':
 
             # 1 2 3 4 5
@@ -84,11 +83,34 @@ class NormalMode:
         pit_in = 1
         while pit_in != pit_place:
             put_random = random.randrange(caves_nums)
-            if (self.cave[put_random][index_wumpus] == False: and self.cave[put_random][index_bat] == False):
+            if (self.cave[put_random][index_wumpus] == False and self.cave[put_random][index_bat] == False):
                self.cave[put_random][index_pit] = True
                pit_place = pit_place + 1
 
-               
+        #Adding Arrow :D
+        arrow_place = 0
+        arrow_in = 1
+        while arrow_in != arrow_place:
+            put_random = random.randrange(caves_nums)
+            if (self.cave[put_random][index_wumpus] == False and self.cave[put_random][index_bat] == False and self.cave[put_random][index_pit] == False):
+               self.cave[put_random][index_arrow] = True
+               arrow_place = arrow_place + 1
+
+    def Player_Start(self, caves_num, cave):
+        player_place = 0
+        player_in = 1
+        while player_in != player_place:
+            put_random = random.randrange(caves_num)
+            if (self.cave[put_random][index_wumpus] == False and self.cave[put_random][index_bat] == False and self.cave[put_random][index_pit] == False and self.cave[put_random][index_arrow] == False):
+                player_start = put_random
+                player_place = player_place + 1
+        return player_start
+
+
+
+
+
+
 
 
 
