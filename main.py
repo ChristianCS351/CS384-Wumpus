@@ -96,22 +96,36 @@ class NormalMode:
                self.cave[put_random][index_arrow] = True
                arrow_place = arrow_place + 1
 
-    def Player_Start(self, caves_num, cave=):
+    def Player_Start(self, caves_nums):
         player_place = 0
         player_in = 1
         while player_in != player_place:
-            put_random = random.randrange(caves_num)
+            put_random = random.randrange(caves_nums)
             if (self.cave[put_random][index_wumpus] == False and self.cave[put_random][index_bat] == False and self.cave[put_random][index_pit] == False and self.cave[put_random][index_arrow] == False):
                 player_start = put_random
                 player_place = player_place + 1
                 return player_start
     
-    def Actions(self, caves_num, player_start)
-        print("f Ok great, you have spawned inside of the {player_start} cave, so lets begin shall we.\n")
+    def Actions(self, caves_nums, player_start):
+        print(f" Ok great, you have spawned inside of the {player_start} cave, so lets begin shall we.\n")
         wumpus_dead = False
 
         while wumpus_dead == False:
-            print("You are standing in ")
+            if player_start == self.cave[caves_nums][index_wumpus]:
+                print("Oh no, the Wumpus has eaten you like a jelly donut. You are Dead")
+                dead_return = input("Press anything to return to menu.")
+                menu()
+            
+            if player_start == self.cave[caves_nums][index_bat]:
+                player_start = random.randrange(caves_nums)
+                print(f"EEKKK EEEKK EEKKK! The bats took you away and placed you in {player_start} how cruel.")
+                continue
+        
+
+            print(f" You are standing in cave {player_start}!\n")
+             
+
+
 
 
 
