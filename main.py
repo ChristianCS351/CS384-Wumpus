@@ -41,7 +41,39 @@ def rules_sheet():
     if menu_choice == '1':
         print("\nHere are the General Rules!")
         print("---------------------------\n")
-        print("You are a hunter tasked to find and eliminate a putrid creature known as the Wumpus")
+        print("You are a hunter tasked to find and eliminate a putrid creature known as the Wumpus! This Wumpus hides in a cave system \
+        and it is your job to use your arrows to kill this Wumpus! Here are some of the fundamentals:\n")
+        ("Player: You will start on a random tile in the cave and may have the option to go up, down, right, or left! The Wumpus will \
+        not move when you do, but that will not stop you from potentially running into it or other hazards.\n")
+        continue_gen1 = input("Please type 1 if you wish to continue explanation")
+
+        if continue_gen1 == '1':
+            print("\nArrows: The Player will start with a variety of arrows used to kill the Wumpus. Be warned though, shooting an \
+            arrow and not killing the Wumpus will startle it, causing it to flee to another tile in the cave or it could just kill you \
+            for fun right then and their. Arrows can be found maybe on certain tiles, but it depends on mode. Once you run out of arrows \
+             and tiles to collect them, you are most likely doomed, so just commit Wumpuside.")
+            print("\nBats: Awaiting in the cave system could be a swarm of angry bats. If you run into bats, they will carry you and \
+            drop you onto a random tile in the cave. This random tile could be safe but also dangerous to potentially cause your death. \
+            In harder modes, the bats may just rip you into shreds. You cannot kill bats with arrows, so don't even try.\n" )
+            continue_gen2 = input("Please type 1 if you wish to continue explanation")
+        else:
+            print("Invalid: Waiting for 1")
+
+            if continue_gen2 == '1':
+                print("\nPit: There can be deep pits in the cave that will cause your death if you walk onto the tile with one. The Wumpus can walk on these pits. \
+                Arrows of course are useless on a pit because you obviously can't kill it. Just avoid the pits to be okay.\n")
+                print("Warnings: You will receive an audible warning if their is a draft, bats, or Wumpus near your cave tile. \
+                This will obviously help you avoid danger and kill the Wumpus for good.\n")
+                print("Overall, those are rules best of luck Player and kill that horrible Wumpus before he devours you like a jelly donut!\n")
+                end_gen = input("Please type 1 to return to rules sheet")
+            else:
+                print("Invalid: Waiting for 1")
+                
+                if end_gen == '1':
+                    rules_sheet()
+                else:
+                    print("Invalid: Waiting for 1")           
+    
     elif menu_choice == '2':
         print("\nHere are the Normal Game Mode Rules!")
         print("----------------------")
