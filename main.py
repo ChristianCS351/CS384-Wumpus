@@ -121,7 +121,7 @@ class NormalMode: #This starts normal mode
         while wumpus_dead == False:
 
             if player_start == bat_loc:
-                player_start = random.randrange(25)
+                player_start = random.randrange(25) #This moves the play to any 25 tiles
                 print(f"EEKKK EEEKK EEKKK! The bats took you away and placed you in cave {player_start} how cruel!\n")
                 continue
 
@@ -204,8 +204,8 @@ class NormalMode: #This starts normal mode
                 player_start = move_now
                 print(f"\nOk Great, you have now moved to cave {player_start}!")
 
-        if wumpus_dead == True:
-           print("\nYou have escaped and saved the nearby village!!!")
+        if wumpus_dead == True: #This prints the victory message since Wumpus dead is now officially true
+           print("\nYou have escaped and saved the nearby village!!!") 
            menu()
         else:
            print("The Village now a forever hostage of the Wumpus!\n")
@@ -546,7 +546,7 @@ class HardMode: #This is hard mode class
                     break
                 
             if player_start == bat_loc2:
-                bat_killmove = random.choice(['move','move','kill','move','move'])
+                bat_killmove = random.choice(['move','move','kill','move','move']) #Here the bat can now kill the player possibly.
 
                 if bat_killmove == 'move':
                     player_start = random.randrange(36)
@@ -683,8 +683,8 @@ def menu():  #This is my menu for the Wumpus game, I plan to make a few gamemode
         print("------------------------------------------------------------------------------\n")
         caves_nums = 25
         normal = NormalMode(caves_nums)
-        start_location = normal.player_starts(caves_nums)
-        start_location = normal.Actions(caves_nums, start_location)
+        start_location = normal.player_starts(caves_nums) #This privately randomly generates a place for you in the cave.
+        start_location = normal.Actions(caves_nums, start_location) #This brings the player to the game basically.
     elif game_choice == '2':
         print("\nOk then, let's bring you into the simple version of Hunt the Wumpus Game!\n")
         caves_nums = 20
@@ -726,10 +726,10 @@ def rules_sheet():
         print("---------------------------\n")
         print("You are a hunter tasked to find and eliminate a putrid creature known as the Wumpus! This Wumpus hides in a cave system and it is your job to use your arrows to kill this Wumpus! Here are some of the fundamentals:\n")
         print("Player: You will start on a random tile in the cave and may have the option to go up, down, right, or left! The Wumpus will not move when you do, but that will not stop you from potentially running into it or other hazards.\n")
-        continue_gen1 = input("Type anything to continue: ")
+        continue_gen1 = input("Type anything to continue: ") #This allows any button to be pressed to continue with no issue.
         print("\nArrows: The Player will start with a variety of arrows used to kill the Wumpus. Be warned though, shooting an arrow and not killing the Wumpus will startle it, causing it to flee to another tile in the cave or it could just kill you for fun right then and their and maybe it could just not move. Arrows can be found maybe on certain tiles, but it depends on mode. Once you run out of arrows and tiles to collect them, you are most likely doomed, so just commit Wumpuside.")
         print("\nBats: Awaiting in the cave system could be a swarm of angry bats. If you run into bats, they will carry you and drop you onto a random tile in the cave. This random tile could be safe but also dangerous to potentially cause your death. In harder modes, the bats may just rip you into shreds. You cannot kill bats with arrows, so don't even try.\n" )
-        continue_gen2 = input("Type anything to continue: ")
+        continue_gen2 = input("Type anything to continue: ") #This allows any button to be pressed to continue with no issue.
         print("\nPit: There can be deep pits in the cave that will cause your death if you walk onto the tile with one. The Wumpus can walk on these pits. Arrows of course are useless on a pit because you obviously can't kill it. Just avoid the pits to be okay.\n")
         print("Warnings: You will receive an audible warning if there is a draft, bats, or Wumpus near your cave tile. This will obviously help you avoid danger and kill the Wumpus for good.\n")
         print("Overall, those are the main rules, best of luck Player and kill that horrible Wumpus before he devours you like a jelly donut!\n")
