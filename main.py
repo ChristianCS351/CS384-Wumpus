@@ -16,7 +16,7 @@ index_arrow = 10
 index_arrow2 = 11
 
 
-class NormalMode:
+class NormalMode: #This starts normal mode
 
 
     def __init__(self, caves_nums):
@@ -121,7 +121,7 @@ class NormalMode:
         while wumpus_dead == False:
 
             if player_start == bat_loc:
-                player_start = random.randrange(caves_nums)
+                player_start = random.randrange(25)
                 print(f"EEKKK EEEKK EEKKK! The bats took you away and placed you in cave {player_start} how cruel!\n")
                 continue
 
@@ -135,9 +135,9 @@ class NormalMode:
             
             if player_start == arrow_loc:
                 self.cave[arrow_loc][index_arrow] = False
-                print("Good Find!! You found a nifty arrow in this room, you now have an extra arrow to use.\n")
-                arrow_supply = arrow_supply + 1
-                continue
+                arrow_supply += 1
+                print(f"\nGood Find!! You found a nifty arrow in this room, you now have an extra arrow to use. You now have {arrow_supply} arrows.\n")
+                arrow_loc = random.randrange(100,200)
 
             cave1 = self.cave[player_start][index_cavepath1]
             cave2 = self.cave[player_start][index_cavepath2]
@@ -177,7 +177,7 @@ class NormalMode:
                         wumpus_dead = True
                     else:
                         arrow_supply = arrow_supply - 1
-                        print(f"Oh drats, you missed the Wumpus, you now have {arrow_supply} arrows remaining.\n")
+                        print(f"\nOh drats, you missed the Wumpus, you now have {arrow_supply} arrows remaining.\n")
                         wumpus_killmove = random.choice(['run','run','kill','run','run'])
 
                         if wumpus_killmove == 'run':
@@ -212,7 +212,7 @@ class NormalMode:
            menu()
 
 
-class SimpleMode:
+class SimpleMode: #This is simple mode class
 
     def __init__(self, caves_nums):
         self.cave = []
@@ -311,15 +311,19 @@ class SimpleMode:
             
             if player_start == arrow_loc:
                 self.cave[arrow_loc][index_arrow] = False
-                print("Good Find!! You found a nifty arrow in this room, you now have an extra arrow to use.\n")
-                arrow_supply = arrow_supply + 1
+                arrow_supply += 1
+                print(f"\nGood Find!! You found a nifty arrow in this room, you now have an extra arrow to use. You now have {arrow_supply} arrows.\n")
+                arrow_loc = random.randrange(100,200)
                 continue
+               
 
             if player_start == arrow_loc2:
-                self.cave[arrow_loc][index_arrow] = False
-                print("Good Find!! You found a nifty arrow in this room, you now have an extra arrow to use.\n")
-                arrow_supply = arrow_supply + 1
+                self.cave[arrow_loc][index_arrow2] = False
+                arrow_supply += 1
+                print(f"\nGood Find!! You found a nifty arrow in this room, you now have an extra arrow to use. You now have {arrow_supply} arrows.\n")
+                arrow_loc2 = random.randrange(100,200)
                 continue
+               
 
             cave1 = self.cave[player_start][index_cavepath1]
             cave2 = self.cave[player_start][index_cavepath2]
@@ -353,7 +357,7 @@ class SimpleMode:
                         wumpus_dead = True
                     else:
                         arrow_supply = arrow_supply - 1
-                        print(f"Oh drats, you missed the Wumpus, you now have {arrow_supply} arrows remaining.\n")
+                        print(f"\nOh drats, you missed the Wumpus, you now have {arrow_supply} arrows remaining.\n")
                         wumpus_killmove = random.choice(['run','run','stay','stay'])
 
                         if wumpus_killmove == 'run':
@@ -390,7 +394,7 @@ class SimpleMode:
     
 
 
-class HardMode:
+class HardMode: #This is hard mode class
 
 
     def __init__(self, caves_nums):
@@ -417,9 +421,9 @@ class HardMode:
             self.cave[6] = [6, 12, 6, 5, False, False, False, False ,False, False, False, False]
             self.cave[7] = [1, 13, 8, 7, False, False, False, False ,False, False, False, False]
             self.cave[8] = [2, 14, 9, 7, False, False, False, False ,False, False, False, False]
-            self.cave[9] = [2, 15, 10, 8, False, False, False, False ,False, False, False, False]
-            self.cave[10] = [3, 16, 11, 9, False, False, False, False ,False, False, False, False]
-            self.cave[11] = [4, 17, 12, 10, False, False, False, False ,False, False, False, False]
+            self.cave[9] = [3, 15, 10, 8, False, False, False, False ,False, False, False, False]
+            self.cave[10] = [4, 16, 11, 9, False, False, False, False ,False, False, False, False]
+            self.cave[11] = [5, 17, 12, 10, False, False, False, False ,False, False, False, False]
             self.cave[12] = [6, 18, 12, 11, False, False, False, False ,False, False, False, False]
             self.cave[13] = [7, 19, 14, 13, False, False, False, False ,False, False, False, False]
             self.cave[14] = [8, 20, 15, 13, False, False, False, False ,False, False, False, False]
@@ -533,11 +537,11 @@ class HardMode:
                 bat_killmove = random.choice(['move','move','kill','move','move'])
 
                 if bat_killmove == 'move':
-                    player_start = random.randrange(caves_nums)
+                    player_start = random.randrange(36)
                     print(f"EEKKK EEEKK EEKKK! The bats spared you and took you away and placed you in cave {player_start} how cruel!\n")
                     continue
 
-                elif wumpus_killmove == 'kill':
+                elif bat_killmove == 'kill':
                     print("Oh no, the bats just ripped you to shreds as they did not want the Wumpus to get all the action. You are Dead!\n")
                     break
                 
@@ -545,11 +549,11 @@ class HardMode:
                 bat_killmove = random.choice(['move','move','kill','move','move'])
 
                 if bat_killmove == 'move':
-                    player_start = random.randrange(caves_nums)
+                    player_start = random.randrange(36)
                     print(f"EEKKK EEEKK EEKKK! The bats spared you and took you away and placed you in cave {player_start} how cruel!\n")
                     continue
 
-                elif wumpus_killmove == 'kill':
+                elif bat_killmove == 'kill':
                     print("Oh no, the bats just ripped you to shreds as they did not want the Wumpus to get all the action. You are Dead!\n")
                     break
                 
@@ -557,11 +561,11 @@ class HardMode:
                 bat_killmove = random.choice(['move','move','kill','move','move'])
 
                 if bat_killmove == 'move':
-                    player_start = random.randrange(caves_nums)
+                    player_start = random.randrange(36)
                     print(f"EEKKK EEEKK EEKKK! The bats spared you and took you away and placed you in cave {player_start} how cruel!\n")
                     continue
 
-                elif wumpus_killmove == 'kill':
+                elif bat_killmove == 'kill':
                     print("Oh no, the bats just ripped you to shreds as they did not want the Wumpus to get all the action. You are Dead!\n")
                     break
         
@@ -592,7 +596,16 @@ class HardMode:
             if bat_loc in [(cave1),(cave2),(cave3),(cave4)]:
                 print("You hear flapping. Those Savage Bats are closeby!!!")
 
+            if bat_loc2 in [(cave1),(cave2),(cave3),(cave4)]:
+                print("You hear flapping. Those Savage Bats are closeby!!!")
+
+            if bat_loc3 in [(cave1),(cave2),(cave3),(cave4)]:
+                print("You hear flapping. Those Savage Bats are closeby!!!")
+
             if pit_loc in [(cave1),(cave2),(cave3),(cave4)]:
+                print("You hear a whistling wind, you are close to a Pit!!!")
+            
+            if pit_loc2 in [(cave1),(cave2),(cave3),(cave4)]:
                 print("You hear a whistling wind, you are close to a Pit!!!")
             
             player_moving = ''
@@ -602,7 +615,7 @@ class HardMode:
             if player_moving in ['S','s']:
                 if arrow_supply > 0:
 
-                    print("\nOkay Player, you have decided to shoot an arrow to a nearby cave, pray your right.")
+                    print("\nOkay Player, you have decided to shoot an arrow to a nearby cave, pray you're right.")
                     shoot_choice = ''
                     while True:
                         try:
@@ -613,11 +626,11 @@ class HardMode:
                         except ValueError:
                             pass
                     if shoot_choice == wumpus_loc:
-                        print("\nBAMMMM! You got a headshot, you killed the Juggernaut Wumpus and saved your own self from being two halves, CONGRATS!")
+                        print("\nBAMMMM! You got a headshot, you killed the Juggernaut Wumpus and saved yourself from being two halves, CONGRATS!")
                         wumpus_dead = True
                     else:
                         arrow_supply = arrow_supply - 1
-                        print(f"Oh drats, you missed the Wumpus, you now have {arrow_supply} arrows remaining.\n")
+                        print(f"\nOh drats, you missed the Wumpus, you now have {arrow_supply} arrows remaining.\n")
                         wumpus_killmove = random.choice(['run','kill'])
 
                         if wumpus_killmove == 'run':
@@ -648,7 +661,7 @@ class HardMode:
            print("\nYou have escaped and saved the nearby village, Gold Medal for you!!!")
            menu()
         else:
-           print("The Village will now a forever feel the wrath of Juggernaut Wumpus!\n")
+           print("The Village will now forever feel the wrath of Juggernaut Wumpus!\n")
            menu()
 
 
@@ -718,7 +731,7 @@ def rules_sheet():
         print("\nBats: Awaiting in the cave system could be a swarm of angry bats. If you run into bats, they will carry you and drop you onto a random tile in the cave. This random tile could be safe but also dangerous to potentially cause your death. In harder modes, the bats may just rip you into shreds. You cannot kill bats with arrows, so don't even try.\n" )
         continue_gen2 = input("Type anything to continue: ")
         print("\nPit: There can be deep pits in the cave that will cause your death if you walk onto the tile with one. The Wumpus can walk on these pits. Arrows of course are useless on a pit because you obviously can't kill it. Just avoid the pits to be okay.\n")
-        print("Warnings: You will receive an audible warning if their is a draft, bats, or Wumpus near your cave tile. This will obviously help you avoid danger and kill the Wumpus for good.\n")
+        print("Warnings: You will receive an audible warning if there is a draft, bats, or Wumpus near your cave tile. This will obviously help you avoid danger and kill the Wumpus for good.\n")
         print("Overall, those are the main rules, best of luck Player and kill that horrible Wumpus before he devours you like a jelly donut!\n")
         end_gen = input("Please type anything to return to rules sheet: ")
         rules_sheet()
@@ -730,7 +743,7 @@ def rules_sheet():
         print("Arrows: You will start with 3 arrows. One tile in the cave will have a free backup arrow.\n")
         print("Bats and Pits: There will be one bat and one pit tile and you will get warning if near one.\n")
         continue_nor1 = input("Type anything to continue: ")
-        print("\nWumpus: If you miss a shot the Wumpus will have an 80% to move and a 20% to kill you instantly from anywhere you are.")
+        print("\nWumpus: If you miss a shot the Wumpus will have a 80% to move and a 20% to kill you instantly from anywhere you are.")
         print("\nBats: Bats will not be able to kill you in this mode, just move you randomly, which could kill you if you are put on the wrong tile.\n")
         end_nor = input("Please type anything to return to rules sheet: ")
         rules_sheet()
@@ -752,7 +765,7 @@ def rules_sheet():
         print("Arrows: You will start with 2 arrows. No tiles will have an arrow on it.\n")
         print("Bats and Pits: There will be two bat and two pit tiles and you will get warning if near one.\n")
         continue_har1 = input("Type anything to continue: ")
-        print("\nWumpus: If you miss a shot the Wumpus will have an 50% to move and a 50% to kill you instantly from anywhere you are.")
+        print("\nWumpus: If you miss a shot the Wumpus will have 50% to move and 50% to kill you instantly from anywhere you are.")
         print("\nBats: Bats will be able to kill you if you encounter one at 20%, and of course 80% to just move you randomly, which could kill you if you are put on the wrong tile.\n")
         end_har = input("Please type anything to return to rules sheet: ")
         rules_sheet()
