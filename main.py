@@ -99,7 +99,7 @@ class NormalMode:
     def player_starts(self, caves_nums):
         player_place = 0
         player_in = 1
-        while player_in != player_place:
+        while True:
             put_random = random.randrange(1, caves_nums + 1)
             if (self.cave[put_random][index_wumpus] == False and self.cave[put_random][index_bat] == False and self.cave[put_random][index_pit] == False and self.cave[put_random][index_arrow] == False):
                 player_start = put_random
@@ -281,7 +281,7 @@ class SimpleMode:
     def player_starts(self, caves_nums):
         player_place = 0
         player_in = 1
-        while player_in != player_place:
+        while True:
             put_random = random.randrange(1, caves_nums + 1)
             if (self.cave[put_random][index_wumpus] == False):
                 player_start = put_random
@@ -393,6 +393,265 @@ class SimpleMode:
 class HardMode:
 
 
+    def __init__(self, caves_nums):
+        self.cave = []
+
+        for caving in range(caves_nums + 1):
+            self.cave.append([0, 0, 0, 0, False, False, False, False, False, False, False, False])
+        if caves_nums == 25:
+
+            # 1 2 3 4 5 6
+            # 7 8 9 10 11 12
+            # 13 14 15 16 17 18
+            # 19 20 21 22 23 24 
+            # 25 26 27 28 29 30
+            # 31 32 33 34 35 36
+
+
+            #Cave Numbering = up, down, right, left, 4 things:                     
+            self.cave[1] = [1, 7, 2, 1, False, False, False, False ,False, False, False, False]
+            self.cave[2] = [2, 8, 3, 1, False, False, False, False ,False, False, False, False]
+            self.cave[3] = [3, 9, 4, 2, False, False, False, False ,False, False, False, False]
+            self.cave[4] = [4, 10, 5, 3, False, False, False, False ,False, False, False, False]
+            self.cave[5] = [5, 11, 6, 4, False, False, False, False ,False, False, False, False]
+            self.cave[6] = [6, 12, 6, 5, False, False, False, False ,False, False, False, False]
+            self.cave[7] = [1, 13, 8, 7, False, False, False, False ,False, False, False, False]
+            self.cave[8] = [2, 14, 9, 7, False, False, False, False ,False, False, False, False]
+            self.cave[9] = [2, 15, 10, 8, False, False, False, False ,False, False, False, False]
+            self.cave[10] = [3, 16, 11, 9, False, False, False, False ,False, False, False, False]
+            self.cave[11] = [4, 17, 12, 10, False, False, False, False ,False, False, False, False]
+            self.cave[12] = [6, 18, 12, 11, False, False, False, False ,False, False, False, False]
+            self.cave[13] = [7, 19, 14, 13, False, False, False, False ,False, False, False, False]
+            self.cave[14] = [8, 20, 15, 13, False, False, False, False ,False, False, False, False]
+            self.cave[15] = [9, 21, 16, 14, False, False, False, False ,False, False, False, False]
+            self.cave[16] = [10, 22, 17, 15, False, False, False, False ,False, False, False, False]
+            self.cave[17] = [11, 23, 18, 16, False, False, False, False ,False, False, False, False]
+            self.cave[18] = [12, 24, 18, 17, False, False, False, False ,False, False, False, False]
+            self.cave[19] = [13, 25, 20, 19, False, False, False, False ,False, False, False, False]
+            self.cave[20] = [14, 26, 21, 19, False, False, False, False ,False, False, False, False]
+            self.cave[21] = [15, 27, 22, 20, False, False, False, False ,False, False, False, False]
+            self.cave[22] = [16, 28, 23, 21, False, False, False, False ,False, False, False, False]
+            self.cave[23] = [17, 29, 24, 22, False, False, False, False ,False, False, False, False]
+            self.cave[24] = [18, 30, 24, 23, False, False, False, False ,False, False, False, False]
+            self.cave[25] = [19, 31, 26, 25, False, False, False, False ,False, False, False, False]
+            self.cave[26] = [20, 32, 27, 25, False, False, False, False ,False, False, False, False]
+            self.cave[27] = [21, 33, 28, 26, False, False, False, False ,False, False, False, False]
+            self.cave[28] = [22, 34, 29, 27, False, False, False, False ,False, False, False, False]
+            self.cave[29] = [23, 35, 30, 28, False, False, False, False ,False, False, False, False]
+            self.cave[30] = [24, 36, 30, 29, False, False, False, False ,False, False, False, False]
+            self.cave[31] = [25, 31, 32, 31, False, False, False, False ,False, False, False, False]
+            self.cave[32] = [26, 32, 33, 31, False, False, False, False ,False, False, False, False]
+            self.cave[33] = [27, 33, 34, 32, False, False, False, False ,False, False, False, False]
+            self.cave[34] = [28, 34, 35, 33, False, False, False, False ,False, False, False, False]
+            self.cave[35] = [29, 35, 36, 34, False, False, False, False ,False, False, False, False]
+            self.cave[36] = [30, 36, 36, 35, False, False, False, False ,False, False, False, False]
+        else:
+            sys.exit()
+
+        #Adding my Wumpus :D
+        wumpus_place = 0 #This makes sure that the Wumpus will actually be placed and not forgotten, I used while to make sure it will never skip this as that would remove the entire point of winning if no Wumpus.
+        wumpus_in = 1
+        while True:
+            put_random = random.randrange(1, caves_nums + 1)
+            self.cave[put_random][index_wumpus] = True
+            break
+
+        #Adding my Bat :D
+        bat_place = 0
+        bat_in = 1
+        while True:
+            put_random = random.randrange(1, caves_nums + 1)
+            if self.cave[put_random][index_wumpus] == False:
+               self.cave[put_random][index_bat] = True
+               break
+
+        #Adding my Bat2 :D
+        bat_place2 = 0
+        bat_in2 = 1
+        while True:
+            put_random = random.randrange(1, caves_nums + 1)
+            if (self.cave[put_random][index_wumpus] == False and self.cave[put_random][index_bat] == False):
+               self.cave[put_random][index_bat2] = True
+               break
+
+        #Adding my Bat3 :D
+        bat_place3 = 0
+        bat_in3 = 1
+        while True:
+            put_random = random.randrange(1, caves_nums + 1)
+            if (self.cave[put_random][index_wumpus] == False and self.cave[put_random][index_bat] == False and self.cave[put_random][index_bat2] == False):
+               self.cave[put_random][index_bat3] = True
+               break
+
+        #Adding my Pit :D
+        pit_place = 0
+        pit_in = 1
+        while True:
+            put_random = random.randrange(1, caves_nums + 1)
+            if (self.cave[put_random][index_wumpus] == False and self.cave[put_random][index_bat] == False and self.cave[put_random][index_bat2] == False and self.cave[put_random][index_bat3] == False):
+               self.cave[put_random][index_pit] = True
+               break
+
+        #Adding my Pit2 :D
+        pit_place2 = 0
+        pit_in2 = 1
+        while True:
+            put_random = random.randrange(1, caves_nums + 1)
+            if (self.cave[put_random][index_wumpus] == False and self.cave[put_random][index_bat] == False and self.cave[put_random][index_bat2] == False and self.cave[put_random][index_bat3] == False and self.cave[put_random][index_pit] == False):
+               self.cave[put_random][index_pit2] = True
+               break
+
+
+
+    def player_starts(self, caves_nums):
+        player_place = 0
+        player_in = 1
+        while True:
+            put_random = random.randrange(1, caves_nums + 1)
+            if (self.cave[put_random][index_wumpus] == False and self.cave[put_random][index_bat] == False and self.cave[put_random][index_bat2] == False and self.cave[put_random][index_bat3] == False and self.cave[put_random][index_pit] == False):
+                player_start = put_random
+                player_place = player_place + 1
+                return player_start
+    
+    def Actions(self, caves_nums, player_start):
+        print(f"Ok great, you have spawned inside of the {player_start} cave, so lets begin the hard journey shall we.\n")
+        wumpus_dead = False
+        arrow_supply = 2
+        #For this wumpus, pit, etc. I used this code "wumpus_loc = self.cave[caves_nums][index_wumpus] = True" but it kep returning error
+        #So I used ChatGPT for minor code guidance and support and it suggested I use enumerate and use i to switch it wumpus_loc.
+        wumpus_loc = [i for i, cave in enumerate(self.cave) if cave[index_wumpus]][0]
+        bat_loc = [i for i, cave in enumerate(self.cave) if cave[index_bat]][0]
+        bat_loc2 = [i for i, cave in enumerate(self.cave) if cave[index_bat2]][0]
+        bat_loc3 = [i for i, cave in enumerate(self.cave) if cave[index_bat3]][0]
+        pit_loc = [i for i, cave in enumerate(self.cave) if cave[index_pit]][0]
+        pit_loc2 = [i for i, cave in enumerate(self.cave) if cave[index_pit2]][0]
+
+
+        while wumpus_dead == False:
+
+            if player_start == bat_loc:
+                bat_killmove = random.choice(['move','move','kill','move','move'])
+
+                if bat_killmove == 'move':
+                    player_start = random.randrange(caves_nums)
+                    print(f"EEKKK EEEKK EEKKK! The bats spared you and took you away and placed you in cave {player_start} how cruel!\n")
+                    continue
+
+                elif wumpus_killmove == 'kill':
+                    print("Oh no, the bats just ripped you to shreds as they did not want the Wumpus to get all the action. You are Dead!\n")
+                    return 0
+                
+            if player_start == bat_loc2:
+                bat_killmove = random.choice(['move','move','kill','move','move'])
+
+                if bat_killmove == 'move':
+                    player_start = random.randrange(caves_nums)
+                    print(f"EEKKK EEEKK EEKKK! The bats spared you and took you away and placed you in cave {player_start} how cruel!\n")
+                    continue
+
+                elif wumpus_killmove == 'kill':
+                    print("Oh no, the bats just ripped you to shreds as they did not want the Wumpus to get all the action. You are Dead!\n")
+                    return 0
+                
+            if player_start == bat_loc3:
+                bat_killmove = random.choice(['move','move','kill','move','move'])
+
+                if bat_killmove == 'move':
+                    player_start = random.randrange(caves_nums)
+                    print(f"EEKKK EEEKK EEKKK! The bats spared you and took you away and placed you in cave {player_start} how cruel!\n")
+                    continue
+
+                elif wumpus_killmove == 'kill':
+                    print("Oh no, the bats just ripped you to shreds as they did not want the Wumpus to get all the action. You are Dead!\n")
+                    return 0
+        
+
+            if player_start == wumpus_loc:
+                print("Oh no, the Juggernaut Wumpus picked you up and tore you in half, Hardcore if I do say. You are Dead!\n")
+                break
+
+            if player_start == pit_loc:
+                print("AHHHHHHHH!!!! *crash* You fell into a pit like a blind person who is also deaf. You are Dead!\n")
+                break
+
+            if player_start == pit_loc2:
+                print("AHHHHHHHH!!!! *crash* You fell into a pit like a blind person who is also deaf. You are Dead!\n")
+                break
+            
+
+            cave1 = self.cave[player_start][index_cavepath1]
+            cave2 = self.cave[player_start][index_cavepath2]
+            cave3 = self.cave[player_start][index_cavepath3]
+            cave4 = self.cave[player_start][index_cavepath4]
+    
+            print(f"You are alive and are standing in cave {player_start} which lead to caves {cave1}, {cave2}, {cave3}, and {cave4}!\n")
+            
+            if wumpus_loc in [(cave1),(cave2),(cave3),(cave4)]:
+                print("You smell a horrid stench and blood, A Juggernaut Wumpus must be close!!!")
+
+            if bat_loc in [(cave1),(cave2),(cave3),(cave4)]:
+                print("You hear flapping. Those Savage Bats are closeby!!!")
+
+            if pit_loc in [(cave1),(cave2),(cave3),(cave4)]:
+                print("You hear a whistling wind, you are close to a Pit!!!")
+            
+            player_moving = ''
+            while player_moving not in ['S','s','M','m']:
+                  player_moving = input("\nWhat is your move Player, press (M) to move or press (S) to shoot: ")
+             
+            if player_moving in ['S','s']:
+                if arrow_supply > 0:
+
+                    print("\nOkay Player, you have decided to shoot an arrow to a nearby cave, pray your right.")
+                    shoot_choice = ''
+                    while True:
+                        try:
+
+                            shoot_choice = int(input(f"Where would you like to shoot the arrow? In cave {cave1}, {cave2}, {cave3}, or {cave4}. "))
+                            if shoot_choice in [cave1, cave2, cave3, cave4]:
+                                break
+                        except ValueError:
+                            pass
+                    if shoot_choice == wumpus_loc:
+                        print("\nBAMMMM! You got a headshot, you killed the Juggernaut Wumpus and saved your own self from being two halves, CONGRATS!")
+                        wumpus_dead = True
+                    else:
+                        arrow_supply = arrow_supply - 1
+                        print(f"Oh drats, you missed the Wumpus, you now have {arrow_supply} arrows remaining.\n")
+                        wumpus_killmove = random.choice(['run''kill'])
+
+                        if wumpus_killmove == 'run':
+                            print("The Wumpus has retreated, thankfully!\n")
+                            wumpus_loc = random.randrange(caves_nums)
+
+                        elif wumpus_killmove == 'kill':
+                            print("Oh no, the Juggernaut Wumpus picked you up and tore you in half, Hardcore if I do say. You are Dead!\n")
+                            return 0
+                else:
+                    print("\nSorry, you no longer have arrows to shoot.\n")
+
+
+            elif player_moving in ['M','m']:
+                move_now = ''
+                while True:
+                    try:
+
+                        move_now = int(input(f"\nOk great let's get moving now, which cave would you like to move to? Cave {cave1}, {cave2}, {cave3}, or {cave4}: "))
+                        if move_now in [cave1, cave2, cave3, cave4]:
+                            break
+                    except ValueError:
+                        pass
+                player_start = move_now
+                print(f"\nOk Great, you have now moved to cave {player_start}!")
+
+        if wumpus_dead == True:
+           print("\nYou have escaped and saved the nearby village!!!")
+           menu()
+        else:
+           print("The Village now a forever hostage of the Wumpus!\n")
+           menu()
+
+
 
 def menu():  #This is my menu for the Wumpus game, I plan to make a few gamemodes here to make it unique and a rules sheet.
     print("Welcome to Hunt the Wumpus!")
@@ -421,6 +680,11 @@ def menu():  #This is my menu for the Wumpus game, I plan to make a few gamemode
         start_location = simple.Actions(caves_nums, start_location)
     elif game_choice == '3':
         print("\nOk then, you will be sorry :D. Let's bring you into the hard version of the Hunt the Wumpus Game!\n")
+        print("\nOk then, let's bring you into the hard version of Hunt the Wumpus Game!\n")
+        caves_nums = 20
+        hard = HardMode(caves_nums)
+        start_location = hard.player_starts(caves_nums)
+        start_location = hard.Actions(caves_nums, start_location)
     elif game_choice == '4':
         print("\nOk then, taking you to rules!\n")
         rules_sheet()
