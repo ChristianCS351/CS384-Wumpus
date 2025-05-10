@@ -1,0 +1,40 @@
+I did refer and used some Python files that we worked on this semester like D6 shooters and yahteez to help me figure out fundamentals
+for my Wumpus code like self, lists, classes, unittests, and so forth. Especially Yahteez-unit
+
+
+
+A) 
+
+I am struggling to run my python script in visual studio for some reason, so I copy my code from here and run it in Thonny to see 
+how it runs. I still edit everything through here though.
+
+I believe after doing extensive tests and stuff, I believe everything in my document seems to work properly to my knowledge.
+
+
+B) 
+Most if not all my code is finished. I could have done possibly the cave system better when displaying to move to caves and not showing duplicates of moving to the same cave the player is in when they may be in a corner or something. For example: If you are in cave 1, it may ask you to move or shoot at up=1, down=6, right=2, or left=4.
+
+The Yml stuff was confusing to get it to work properly with my code.
+
+
+
+
+
+C)  
+
+1. I used Microsoft Browser to look up how to end my code on demand. I found the "import sys" to terminate my script from 
+stackoverflow which helps me use sys.exit. Source: https://stackoverflow.com/questions/73663/how-do-i-terminate-a-script 
+
+2. I used my Browser again to see how I can combine self and list that I have and append certain data using another stackoverflow 
+response https://stackoverflow.com/questions/51105738/what-does-appendself-mean-in-python-classes and using a W3Schools 
+site to learn more about appending to lists https://www.w3schools.com/python/ref_list_append.asp.
+
+3. Looked at a website to help me remember how to use range inside of a for loop and I used another W3Schools site to learn 
+this https://www.w3schools.com/python/gloss_python_for_range.asp.
+
+4. Looked at some indexes at W3 schools to help me with index and various lists for my caves https://www.w3schools.com/python/ref_list_index.asp.
+
+5. I looked at how to make some f strings to make my code a little more organized and used this source which is geekforgeeks
+https://www.geeksforgeeks.org/formatted-string-literals-f-strings-python/.
+
+6.I did use ChatGPT to help me restructure my index section as it was all broken.
