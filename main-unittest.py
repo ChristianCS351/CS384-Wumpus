@@ -2,42 +2,37 @@ import unittest
 from main import NormalMode
 import random
 
-class TestYahtzeeRoll(unittest.TestCase):
+class TestNormalMode(unittest.TestCase):
+
     def setUp(self):
-        self.yahtzee = YahtzeeRoll()
-
-    def test_ones(self):
-        self.yahtzee.roll = [1, 6, 2, 1, 1]
-        self.assertEqual(self.yahtzee.upperscore("All-Ones"), 3)
-
-    def test_fives(self):
-        self.yahtzee.roll = [6, 5, 1, 6, 1]
-        self.assertEqual(self.yahtzee.upperscore("All-Fives"), 5)
+        self.caves_num = 25
+        self.game = NormalMode(self.caves_num)
         
-    def test_sixes(self):
-        self.yahtzee.roll = [3, 6, 1, 6, 4]
-        self.assertEqual(self.yahtzee.upperscore("All-Sixes"), 12)
+    def test_arrow(self):
+        arrow_count = sum(1)
+        self.assertEqual(arrow_count, 1)
 
-    def test_full_house(self):
-        self.yahtzee.roll = [1, 1, 1, 2, 2]
-        self.assertEqual(self.yahtzee.lowerscore("Full_House"), 25)
-
-    def test_four_kind(self):
-        self.yahtzee.roll = [4, 4, 4, 4, 5]
-        self.assertEqual(self.yahtzee.lowerscore("Four_Kind"), 21)
-
-    def test_score_yahtzee(self):
-        self.yahtzee.roll = [1, 1, 1, 1, 1]
-        scores = self.yahtzee.roll()
-        self.assertEqual(scores["YAHTZEE!!"], 50)
-
-    def test_chance(self):
-        self.yahtzee.roll = [5, 5, 4, 6, 4]
-        self.assertEqual(self.yahtzee.lowerscore("Chance_Time"), 24)
+    def test_pit(self):
+        pit_count = sum(1)
+        self.assertEqual(pit_count, 1)
         
-    def test_outlimit_reroll(self): #I decided to make a test that deals with assertRaises similiar to the bank test example.
-         with self.assertRaises(ValueError):
-            self.yahtzee.reroll([7,8,9,111,1222222332327464])
+    def test_bat(self):
+        bat_count = sum(1)
+        self.assertEqual(bat_count, 1)
+        
+
+    def test_wumpus(self):
+        wumpus_count = sum(1)
+        self.assertEqual(wumpus_count, 1)
+
+    def test_player_safe(self):
+        player_spawn = self.game.player_spawn(self.caves.num)
+        cave = self.game.cave[player_spawn]
+        self.assertFalse(cave[index_wumpus])
+        self.assertFalse(cave[index_pit])
+        self.assertFalse(cave[index_bat])
+        self.assertFalse(cave[index_arrow])
+
 
 if __name__ == '__main__':
     unittest.main()
