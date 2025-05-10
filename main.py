@@ -134,9 +134,9 @@ class NormalMode:
                 break
             
             if player_start == arrow_loc:
+                self.cave[arrow_loc][index_arrow] = False
                 print("Good Find!! You found a nifty arrow in this room, you now have an extra arrow to use.\n")
                 arrow_supply = arrow_supply + 1
-                self.cave[arrow_loc][index_arrow] = False
                 continue
 
             cave1 = self.cave[player_start][index_cavepath1]
@@ -186,7 +186,7 @@ class NormalMode:
 
                         elif wumpus_killmove == 'kill':
                             print("Oh no, the Wumpus has eaten you like a jelly donut, a Raspberry to be specific. You are Dead!\n")
-                            return 0
+                            break
                 else:
                     print("\nSorry, you no longer have arrows to shoot.\n")
 
@@ -310,14 +310,14 @@ class SimpleMode:
 
             
             if player_start == arrow_loc:
+                self.cave[arrow_loc][index_arrow] = False
                 print("Good Find!! You found a nifty arrow in this room, you now have an extra arrow to use.\n")
                 arrow_supply = arrow_supply + 1
-                self.cave[arrow_loc][index_arrow] = False
                 continue
 
             if player_start == arrow_loc2:
+                self.cave[arrow_loc][index_arrow] = False
                 print("Good Find!! You found a nifty arrow in this room, you now have an extra arrow to use.\n")
-                self.cave[arrow_loc2][index_arrow2] = False
                 arrow_supply = arrow_supply + 1
                 continue
 
@@ -362,7 +362,7 @@ class SimpleMode:
 
                         elif wumpus_killmove == 'stay':
                             print("Great, the Wumpus has stayed in place, maybe you can shoot this time before it escapes!\n")
-                            return 0
+                            continue
                 else:
                     print("\nSorry, you no longer have arrows to shoot.\n")
 
@@ -398,7 +398,7 @@ class HardMode:
 
         for caving in range(caves_nums + 1):
             self.cave.append([0, 0, 0, 0, False, False, False, False, False, False, False, False])
-        if caves_nums == 25:
+        if caves_nums == 36:
 
             # 1 2 3 4 5 6
             # 7 8 9 10 11 12
@@ -539,7 +539,7 @@ class HardMode:
 
                 elif wumpus_killmove == 'kill':
                     print("Oh no, the bats just ripped you to shreds as they did not want the Wumpus to get all the action. You are Dead!\n")
-                    return 0
+                    break
                 
             if player_start == bat_loc2:
                 bat_killmove = random.choice(['move','move','kill','move','move'])
@@ -551,7 +551,7 @@ class HardMode:
 
                 elif wumpus_killmove == 'kill':
                     print("Oh no, the bats just ripped you to shreds as they did not want the Wumpus to get all the action. You are Dead!\n")
-                    return 0
+                    break
                 
             if player_start == bat_loc3:
                 bat_killmove = random.choice(['move','move','kill','move','move'])
@@ -563,7 +563,7 @@ class HardMode:
 
                 elif wumpus_killmove == 'kill':
                     print("Oh no, the bats just ripped you to shreds as they did not want the Wumpus to get all the action. You are Dead!\n")
-                    return 0
+                    break
         
 
             if player_start == wumpus_loc:
@@ -618,7 +618,7 @@ class HardMode:
                     else:
                         arrow_supply = arrow_supply - 1
                         print(f"Oh drats, you missed the Wumpus, you now have {arrow_supply} arrows remaining.\n")
-                        wumpus_killmove = random.choice(['run''kill'])
+                        wumpus_killmove = random.choice(['run','kill'])
 
                         if wumpus_killmove == 'run':
                             print("The Wumpus has retreated, thankfully!\n")
@@ -626,7 +626,7 @@ class HardMode:
 
                         elif wumpus_killmove == 'kill':
                             print("Oh no, the Juggernaut Wumpus picked you up and tore you in half, Hardcore if I do say. You are Dead!\n")
-                            return 0
+                            break
                 else:
                     print("\nSorry, you no longer have arrows to shoot.\n")
 
@@ -645,10 +645,10 @@ class HardMode:
                 print(f"\nOk Great, you have now moved to cave {player_start}!")
 
         if wumpus_dead == True:
-           print("\nYou have escaped and saved the nearby village!!!")
+           print("\nYou have escaped and saved the nearby village, Gold Medal for you!!!")
            menu()
         else:
-           print("The Village now a forever hostage of the Wumpus!\n")
+           print("The Village will now a forever feel the wrath of Juggernaut Wumpus!\n")
            menu()
 
 
@@ -681,7 +681,7 @@ def menu():  #This is my menu for the Wumpus game, I plan to make a few gamemode
     elif game_choice == '3':
         print("\nOk then, you will be sorry :D. Let's bring you into the hard version of the Hunt the Wumpus Game!\n")
         print("\nOk then, let's bring you into the hard version of Hunt the Wumpus Game!\n")
-        caves_nums = 20
+        caves_nums = 36
         hard = HardMode(caves_nums)
         start_location = hard.player_starts(caves_nums)
         start_location = hard.Actions(caves_nums, start_location)
@@ -714,7 +714,7 @@ def rules_sheet():
         print("You are a hunter tasked to find and eliminate a putrid creature known as the Wumpus! This Wumpus hides in a cave system and it is your job to use your arrows to kill this Wumpus! Here are some of the fundamentals:\n")
         print("Player: You will start on a random tile in the cave and may have the option to go up, down, right, or left! The Wumpus will not move when you do, but that will not stop you from potentially running into it or other hazards.\n")
         continue_gen1 = input("Type anything to continue: ")
-        print("\nArrows: The Player will start with a variety of arrows used to kill the Wumpus. Be warned though, shooting an arrow and not killing the Wumpus will startle it, causing it to flee to another tile in the cave or it could just kill you for fun right then and their. Arrows can be found maybe on certain tiles, but it depends on mode. Once you run out of arrows and tiles to collect them, you are most likely doomed, so just commit Wumpuside.")
+        print("\nArrows: The Player will start with a variety of arrows used to kill the Wumpus. Be warned though, shooting an arrow and not killing the Wumpus will startle it, causing it to flee to another tile in the cave or it could just kill you for fun right then and their and maybe it could just not move. Arrows can be found maybe on certain tiles, but it depends on mode. Once you run out of arrows and tiles to collect them, you are most likely doomed, so just commit Wumpuside.")
         print("\nBats: Awaiting in the cave system could be a swarm of angry bats. If you run into bats, they will carry you and drop you onto a random tile in the cave. This random tile could be safe but also dangerous to potentially cause your death. In harder modes, the bats may just rip you into shreds. You cannot kill bats with arrows, so don't even try.\n" )
         continue_gen2 = input("Type anything to continue: ")
         print("\nPit: There can be deep pits in the cave that will cause your death if you walk onto the tile with one. The Wumpus can walk on these pits. Arrows of course are useless on a pit because you obviously can't kill it. Just avoid the pits to be okay.\n")
@@ -742,7 +742,7 @@ def rules_sheet():
         print("Arrows: You will start with 3 arrows. Two tiles in the cave will have a free backup arrow.\n")
         print("Bats and Pits: No bats or pits will spawn in this particular mode.\n")
         continue_sim1 = input("Type anything to continue: ")
-        print("\nWumpus: If you miss a shot the Wumpus will have a 100% to move and none to kill you, unless it happens to land on you in random move.")
+        print("\nWumpus: If you miss a shot the Wumpus will have a 50% to move and 50% to not move at all.")
         end_sim = input("Please type anything to return to rules sheet: ")
         rules_sheet()
     elif menu_choice == '4':
